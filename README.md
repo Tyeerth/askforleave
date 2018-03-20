@@ -47,14 +47,23 @@
 db.properties
 
 > `db.drivername=com.mysql.jdbc.Driver`
+>
 > `db.url=jdbc:mysql://127.0.0.1:3306/leave?userUnicode=true&characterEncoding=utf-8`
+>
 > `db.username=root`//数据库账号
+>
 > `db.password=`//密码
+>
 > `db.pageListNum=6`//分页的每页记录基本数量
+>
 > `db.name1=xtmxzzb`//项目登录名
+>
 > `db.progectName=askForLeave`//项目名，修改项目名时替换
 >
 > `db.accessKeyId=`//AK信息，短信服务用到
+>
 > `db.accessKeySecret=`
+>
 > `db.queueName=Alicom-Queue-xxxxxxxx-SmsUp`//短信上行消息接收，xxxxx替换成自己的信息，用来接收发给系统的信息
+>
 > `db.signName=`//短信签名
