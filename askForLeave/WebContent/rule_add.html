@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" class="ie8 no-js">
+<!--[endif]---->
+<!--[endif]---->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>谢通门县请销假管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta
+	content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports"
+	name="description">
+<meta content="" name="author">
+<link href="./resources/css" rel="stylesheet" type="text/css">
+<link href="./resources/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/simple-line-icons.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-switch.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/daterangepicker.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/morris.css" rel="stylesheet" type="text/css">
+<link href="./resources/fullcalendar.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/jqvmap.css" rel="stylesheet" type="text/css">
+<link href="./resources/bootstrap-modal-bs3patch.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-modal.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/style.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/components.css" rel="stylesheet"
+	id="style_components" type="text/css">
+<link href="./resources/plugins.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/default.min.css" rel="stylesheet"
+	type="text/css" id="style_color">
+<link href="./resources/custom.min.css" rel="stylesheet" type="text/css">
+
+<script src="js/geo2.js"></script>
+<script src="js/leave.js"></script>
+<script src="js/jquery.min.js"></script>
+
+</head>
+
+
+<body
+	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
+	onload="javascript:addRule();">
+	<div class="page-header navbar navbar-fixed-top">
+
+		<div class="page-header-inner ">
+			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
+
+		</div>
+
+	</div>
+
+	<div class="clearfix"></div>
+
+	<div class="page-container">
+
+		<div class="page-sidebar-wrapper" id="lefter">
+			<!-- lefter.html  -->
+		</div>
+
+		<div class="page-content-wrapper">
+
+			<div class="page-content" style="min-height: 630px;">
+
+				<div class="page-head">
+
+					<div class="page-title">
+						<h1>添加请假规则</h1>
+					</div>
+
+				</div>
+
+
+
+				<div class="portlet box blue">
+					<div class="portlet-title">
+						<div class="caption">
+							<i></i>添加请假规则
+						</div>
+
+					</div>
+					<div class="portlet-body form">
+						<form method="post" onsubmit="return update_rule('add')"
+							id="updateRule"
+							class="form-horizontal form-bordered form-label-stripped">
+
+							<div class="form-body">
+								<div class="form-group">
+									<label class="col-md-3 control-label">所在类区</label>
+									<div class="col-md-6">
+										<select name="user_class_area" class="form-control"
+											alt="string">
+											<option value=""></option>
+											<option value="二类区">二类区</option>
+											<option value="三类区">三类区</option>
+											<option value="四类区">四类区</option>
+										</select>
+
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">本人籍贯</label>
+									<div class="col-md-6">
+										<select class="col-md-4" id="cmbProvince" name="cmbProvince"></select>
+										<select class="col-md-4" id="cmbCity" name="cmbCity"></select>
+										<select class="col-md-4" id="cmbArea" name="cmbArea"></select>
+
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">职级</label>
+									<div class="col-md-6" id="position_rank">
+										<select name="user_position_rank" class="form-control">
+											<option value=""></option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">是否两地分居</label>
+									<div class="col-md-6">
+										<select name="user_separated" class="form-control"
+											alt="string">
+											<option value="是">是</option>
+											<option value="否">否</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">允许请假天数</label>
+									<div class="col-md-6">
+										<input name="user_max_day" class="form-control" alt="string">
+									</div>
+								</div>
+
+								<div class="form-group">
+									<div class="text-right col-md-9">
+										<a class="btn blue" role="button" onclick="update_rule('add')">提交</a>
+										<button type="reset" class="btn default">取消</button>
+									</div>
+								</div>
+							</div>
+
+						</form>
+					</div>
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+	</div>
+	<script type="text/javascript">
+    addressInit('cmbProvince', 'cmbCity', 'cmbArea');
+    addressInit('cmbProvince2', 'cmbCity2', 'cmbArea2');
+</script>
+
+	<script src="./resources/respond.min.js.下载"></script>
+	<script src="./resources/excanvas.min.js.下载"></script>
+	<script src="./resources/ie8.fix.min.js.下载"></script>
+
+
+	<script src="./resources/jquery.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/bootstrap.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/js.cookie.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/jquery.slimscroll.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/jquery.blockui.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-switch.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/daterangepicker.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/morris.min.js.下载" type="text/javascript"></script>
+
+	<script src="./resources/app.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.bootstrap.js.下载"
+		type="text/javascript"></script>
+
+	<script src="./resources/table-datatables-managed.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-datepicker.min.js.下载"
+		type="text/javascript"></script>
+
+	<script src="./resources/layout.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/demo.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/quick-sidebar.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/quick-nav.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/components-date-time-pickers.min.js.下载"
+		type="text/javascript"></script>
+
+
+
+
+</body>
+</html>

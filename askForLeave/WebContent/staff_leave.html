@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)file:///C:/Users/lu/Desktop/qingjiaxiangmu/HTML/kebanyuanqingjia.html -->
+<html lang="en" class="ie8 no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>谢通门县请销假管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta
+	content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports"
+	name="description">
+<meta content="" name="author">
+<link href="./resources/css" rel="stylesheet" type="text/css">
+<link href="./resources/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/simple-line-icons.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-switch.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/daterangepicker.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/morris.css" rel="stylesheet" type="text/css">
+<link href="./resources/fullcalendar.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/jqvmap.css" rel="stylesheet" type="text/css">
+<link href="./resources/bootstrap-datepicker3.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-modal-bs3patch.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-modal.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/style.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/components.css" rel="stylesheet"
+	id="style_components" type="text/css">
+<link href="./resources/plugins.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/default.min.css" rel="stylesheet"
+	type="text/css" id="style_color">
+<link href="./resources/custom.min.css" rel="stylesheet" type="text/css">
+
+<script src="js/leave.js"></script>
+<script src="js/jquery.min.js"></script>
+</head>
+<!-- END HEAD -->
+
+<body
+	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
+	onload="javascript:lefter();">
+	<div class="page-header navbar navbar-fixed-top">
+
+		<div class="page-header-inner ">
+			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
+		</div>
+
+	</div>
+
+	<div class="clearfix"></div>
+
+	<div class="page-container">
+
+		<div class="page-sidebar-wrapper" id="lefter">
+			<!-- lefter.html -->
+		</div>
+
+		<div class="page-content-wrapper">
+
+			<div class="page-content" style="min-height: 630px;">
+
+				<div class="page-head">
+
+					<div class="page-title">
+						<h1>请假</h1>
+					</div>
+
+				</div>
+
+
+				<div class="portlet box blue col-md-8">
+					<div class="portlet-title">
+						<div class="caption">
+							<i></i>请假
+						</div>
+					</div>
+
+					<div class="portlet-body form" id="getoneUser">
+						<!-- BEGIN FORM-->
+						<form method="post" onsubmit="get_userInfo()"
+							class="form-horizontal">
+
+							<div class="form-body" id="form-body">
+
+								<div class="form-group">
+									<label class="col-md-3 control-label">姓名</label>
+									<div class="col-md-4">
+										<input onkeydown="name_event()" id="user_name"
+											name="user_name" type="text" class="form-control">
+									</div>
+									<div class="col-md-4">
+										<select name="" class="form-control">
+											<option value=""></option>
+										</select>
+									</div>
+
+								</div>
+								<!-- div class="form-group">
+                                <label class="col-md-3 control-label">请假种类</label>
+                                    <select name="person_kind">
+                                        <option value="县直正科">县直正科</option>
+                                        <option value="县直副科">县直副科</option>
+                                        <option value="科办员">科办员</option>
+                                        <option value="专技工勤人员">专技工勤人员</option>
+                                        <option value="乡镇正科书记">乡镇正科书记</option>
+                                        <option value="乡镇正科">乡镇正科</option>
+                                        <option value="乡镇副科">乡镇副科</option>
+                                        <option value="驻寺负责人">驻寺负责人</option>
+                                        <option value="驻寺一般">驻寺一般</option>
+                                        <option value="驻寺干警">驻寺干警</option>
+                                        <option value="驻寺工勤">驻寺工勤</option>
+                                        <option value="乡镇派出所正科">乡镇派出所正科</option>
+                                        <option value="乡镇派出所副科">乡镇派出所副科</option>
+                                    </select>
+                            </div> -->
+								<div class="form-group">
+
+									<label class="col-md-3 control-label">联系电话</label>
+									<div class="col-md-8">
+										<input name="user_phone" type="text" class="form-control"
+											alt="string" disabled>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">单位</label>
+									<div class="col-md-8">
+										<input name="user_work_address" type="text"
+											class="form-control" alt="string" disabled>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">职务</label>
+									<div class="col-md-8">
+										<input name="user_position" type="text" class="form-control"
+											alt="string" disabled>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">籍贯</label>
+									<div class="col-md-8">
+										<input name="user_origin" type="text" class="form-control"
+											alt="string" disabled>
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">是否两地分居</label>
+									<div class="col-md-8">
+										<select name="user_separated" class="form-control" disabled>
+											<option value="">是</option>
+											<option value="">否</option>
+										</select>
+
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">不在岗期间主持工作领导</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" alt="string">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">请假种类</label>
+									<div class="col-md-8">
+										<select name="" class="form-control">
+											<option value="">事假</option>
+											<option value="">病假</option>
+											<option value="">休假</option>
+											<option value="">轮休</option>
+											<option value="">产假</option>
+											<option value="">丧假</option>
+										</select>
+									</div>
+								</div>
+								<input type="hidden" class="form-control" alt="string">
+								<div class="form-group">
+									<label class="col-md-3 control-label">事由</label>
+									<div class="col-md-8">
+										<input type="text" class="form-control" alt="string">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">开始日期</label>
+									<div class="col-md-3">
+										<input type="date" class="form-control" id="to_party_name"
+											alt="string">
+									</div>
+									<label class="col-md-2 control-label">结束日期</label>
+									<div class="col-md-3">
+										<input type="date" class="form-control" alt="string">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">备注</label>
+									<div class="col-md-8">
+										<input type="text" name="leave_remark" class="form-control">
+									</div>
+								</div>
+
+
+								<div class="form-group">
+									<div class="col-md-11">
+										<div style="float: right;">
+											<a onclick="get_userInfo()" id="get_userInfo"
+												class="btn blue" role="button">提交</a> <a role="button"
+												class="btn default new_words">取消</a>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</form>
+						<!-- END FORM-->
+					</div>
+				</div>
+				<div class="portlet box blue col-md-4">
+					<div class="portlet-title">
+						<div class="caption">
+							<i></i>个人请假记录查看
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<div class="form-body" id="leavedInfo"
+							style="background-color: white;">
+							<!-- 请假数据统计js -->
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+	<script src="./resources/respond.min.js.下载"></script>
+	<script src="./resources/excanvas.min.js.下载"></script>
+	<script src="./resources/ie8.fix.min.js.下载"></script>
+
+
+	<script src="./resources/jquery.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/bootstrap.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/js.cookie.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/jquery.slimscroll.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/jquery.blockui.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-switch.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/daterangepicker.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/morris.min.js.下载" type="text/javascript"></script>
+
+	<script src="./resources/app.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.bootstrap.js.下载"
+		type="text/javascript"></script>
+
+	<script src="./resources/table-datatables-managed.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-datepicker.min.js.下载"
+		type="text/javascript"></script>
+
+	<script src="./resources/layout.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/demo.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/quick-sidebar.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/quick-nav.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/components-date-time-pickers.min.js.下载"
+		type="text/javascript"></script>
+
+
+
+
+</body>
+</html>

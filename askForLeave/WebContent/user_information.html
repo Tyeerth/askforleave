@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" class="ie8 no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>谢通门县请销假管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta
+	content="Preview page of Metronic Admin Theme #4 for responsive bootstrap table demos"
+	name="description">
+<meta content="" name="author">
+
+<link href="./resources/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/css" rel="stylesheet" type="text/css">
+<link href="./resources/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/simple-line-icons.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-switch.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/daterangepicker.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/morris.css" rel="stylesheet" type="text/css">
+<link href="./resources/fullcalendar.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/jqvmap.css" rel="stylesheet" type="text/css">
+<link href="./resources/bootstrap-modal-bs3patch.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-modal.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/style.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/bootstrap-datepicker3.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/daterangepicker.min.css" rel="stylesheet"
+	type="text/css">
+
+<link href="./resources/components.css" rel="stylesheet"
+	id="style_components" type="text/css">
+<link href="./resources/plugins.min.css" rel="stylesheet"
+	type="text/css">
+
+<link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/default.min.css" rel="stylesheet"
+	type="text/css" id="style_color">
+<link href="./resources/custom.min.css" rel="stylesheet" type="text/css">
+
+<script src="js/leave.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/geo.js"></script>
+
+</head>
+
+
+<body
+	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
+	onload="javascript:pageLoad(1);">
+
+	<div class="page-header navbar navbar-fixed-top">
+
+		<div class="page-header-inner ">
+			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
+		</div>
+
+	</div>
+
+	<div class="clearfix"></div>
+
+	<div class="page-container">
+
+		<div class="page-sidebar-wrapper" id="lefter">
+			<!-- lefter.html -->
+		</div>
+
+		<div class="page-content-wrapper">
+
+			<div class="page-content" style="min-height: 630px;">
+
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="page-head">
+							<!-- BEGIN PAGE TITLE -->
+							<div class="page-title">
+								<h1>人员信息管理</h1>
+							</div>
+							<!-- END PAGE TITLE -->
+						</div>
+
+
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i></i>人员信息查询
+								</div>
+							</div>
+							<div class="portlet-body" id="portlet-body">
+								<form method="post" onsubmit="return find_user()" id="findForm">
+									<div class="row">
+										<div class="form-group col-md-12">
+											<div class="col-md-3">
+
+												<label class=" control-label ">姓名</label> <input
+													name="user_name" class="form-control " style="width: 74%">
+
+											</div>
+											<div class="col-md-3">
+
+												<label class=" control-label ">性别</label> <select
+													name="user_sex" class="form-control " style="width: 74%">
+													<option value=""></option>
+													<option value="男">男</option>
+													<option value="女">女</option>
+												</select>
+
+
+											</div>
+											<div class="col-md-3">
+
+												<label class=" control-label ">参工时间</label> <input
+													name="user_work_time" type="date" class="form-control "
+													style="width: 74%">
+
+											</div>
+											<div class="col-md-3">
+
+												<label class=" control-label ">本人籍贯</label> <input
+													name="user_origin" class="form-control select2"
+													style="width: 74%" id="resourceType" alt="int">
+
+												<!-- <select id="cmbProvince" name="user_origin"></select>    
+										<select id="cmbCity"></select>    
+										<select id="cmbArea"></select> -->
+
+											</div>
+										</div>
+										<div class="form-group col-md-12">
+											<div class="col-md-3">
+
+												<label class=" control-label ">配偶籍贯</label> <input
+													name="user_spouse_origin" class="form-control select2"
+													style="width: 74%" id="resourceType" alt="int">
+
+												<!-- <select id="cmbProvince2" name="user_spouse_origin"></select>    
+										<select id="cmbCity2"></select>    
+										<select id="cmbArea2"></select> -->
+
+											</div>
+											<script type="text/javascript">    
+										addressInit('cmbProvince', 'cmbCity', 'cmbArea');
+										addressInit('cmbProvince2', 'cmbCity2', 'cmbArea2'); 
+									</script>
+											<div id="setupField">
+												<!-- <div class="col-md-3">
+                                        <label class="control-label ">工作单位</label>
+                                         <select name="user_work_address" class="form-control select2" style="width: 74%">
+	                                        <option value=""></option>
+	                                        <option value=""></option>
+	                                     </select>
+                                    </div>
+                                    <div class="col-md-3">
+
+                                        <label class=" control-label ">现任职务</label>
+                                        <input name="user_position" class="form-control select2" style="width: 74%"
+                                                alt="int">
+                                        <select name="user_position" class="form-control select2" style="width: 74%">
+	                                        <option value=""></option>
+	                                     </select>
+
+                                    </div>
+                                    <div class="col-md-3">
+
+                                        <label class=" control-label ">职级</label>
+                                        <select name="user_position_rank" class="form-control select2" style="width: 74%">
+	                                        <option value=""></option>
+                                        </select>
+                                    </div> -->
+											</div>
+
+										</div>
+										<div class="form-group col-md-12">
+											<div class="col-md-3">
+
+												<label class=" control-label ">所在类区</label> <select
+													name="user_class_area" class="form-control select2"
+													style="width: 74%" alt="int">
+													<option value=""></option>
+													<option value="二类区">二类区</option>
+													<option value="三类区">三类区</option>
+													<option value="四类区">四类区</option>
+												</select>
+
+
+											</div>
+
+											<div class="col-md-3">
+
+												<label class=" control-label ">是否两地分居</label> <select
+													name="user_separated" class="form-control select2"
+													style="width: 74%">
+													<option value=""></option>
+													<option value="是">是</option>
+													<option value="否">否</option>
+												</select>
+
+
+											</div>
+
+											<div class="col-md-3">
+
+												<label class=" control-label ">联系电话</label> <input
+													id="user_phone" name="user_phone"
+													class="form-control select2" style="width: 74%" alt="int">
+
+
+											</div>
+
+
+										</div>
+										<div id="changePageNum">
+											<input type="hidden" name="pageNum" value="1">
+										</div>
+
+										<div class="col-md-12">
+											<button type="reset" class="btn blue"
+												style="float: right; margin-right: 25px;"
+												onclick="user_reset()">重置查询</button>
+											<a class="btn blue" role="button" onclick="find_user('1')"
+												style="float: right; margin-right: 10px">查询</a>
+
+
+
+										</div>
+									</div>
+								</form>
+
+							</div>
+						</div>
+
+
+
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i></i> 人员信息管理
+								</div>
+							</div>
+
+							<div class="portlet-body">
+
+								<div class="table-responsive">
+									<div>
+										<a class="btn blue " href="add_user.html"
+											style="float: left; margin-right: 10px; margin-left: 15px;">新增人员</a>
+										<form action="ExcelToDB" style="float: left;" id="fileUpload"
+											method="post" enctype="multipart/form-data">
+											<input class="btn blue" type="button" value="批量导入"
+												onclick="submitExcel()" style="float: left;" /> <input
+												id="excelFile" type="file" name="file"
+												style="float: left; margin-top: 5px; margin-left: 5px;">
+										</form>
+									</div>
+									<div class="col-md-12" id="allUserData"
+										style="margin-top: 10px;">
+
+										<div id="user_info">
+
+											<!-- pageLoad(); -->
+										</div>
+
+										<div class="col-md-7 col-sm-7">
+											<div class="dataTables_paginate paging_bootstrap_full_number"
+												id="sample_1_paginate">
+												<ul class="pagination" style="visibility: visible;">
+													<li class="prev "><a
+														onclick="leavePasswdALL('delete')"> 批量删除 </a></li>
+														<li class="prev "><a
+														onclick="leavePasswdALL('add')"> 批量增加领导 </a></li>
+												</ul>
+												<ul class="pagination" style="visibility: visible;"
+													id="findPageNum">
+													<li class="prev "><a
+														onclick="pageChange('first','defaultfind')" title="First"
+														id="firstpage"> 首页 </a></li>
+													<li class="prev"><a
+														onclick="pageChange('prev','defaultfind')" title="Prev"
+														id="prepage"> 上一页 </a></li>
+													<li class="next pagination"><a
+														onclick="pageChange('next','defaultfind')" title="Next"
+														id="nextpage"> 下一页 </a></li>
+
+												</ul>
+												<ul class="pagination" style="visibility: visible;">
+													<li class="next pagination" id="countAll"><a>
+															共x条数据 </a></li>
+												</ul>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+	<script src="./resources/respond.min.js.下载"></script>
+	<script src="./resources/excanvas.min.js.下载"></script>
+	<script src="./resources/ie8.fix.min.js.下载"></script>
+	<script src="./resources/jquery.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/js.cookie.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/jquery.slimscroll.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/jquery.blockui.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-switch.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/daterangepicker.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/morris.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/app.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.bootstrap.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/table-datatables-managed.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-datepicker.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/layout.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/demo.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/quick-sidebar.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/quick-nav.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/components-date-time-pickers.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.bootstrap.js.下载"
+		type="text/javascript"></script>
+
+
+
+</body>
+</html>
