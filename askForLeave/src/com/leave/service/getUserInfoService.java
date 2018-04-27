@@ -57,7 +57,13 @@ public class getUserInfoService {
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
 						"                            <div class=\"form-group\">\r\n" + 
-						"                                <label class=\"col-md-3 control-label\">籍贯</label>\r\n" + 
+						"                                <label class=\"col-md-3 control-label\">本人籍贯</label>\r\n" + 
+						"                                <div class=\"col-md-8\">\r\n" + 
+						"                                    <input name=\"user_origin\" type=\"text\" class=\"form-control\" alt=\"string\" disabled>\r\n" + 
+						"                                </div>\r\n" + 
+						"                            </div>\r\n" + 
+						"                            <div class=\"form-group\">\r\n" + 
+						"                                <label class=\"col-md-3 control-label\">配偶籍贯</label>\r\n" + 
 						"                                <div class=\"col-md-8\">\r\n" + 
 						"                                    <input name=\"user_origin\" type=\"text\" class=\"form-control\" alt=\"string\" disabled>\r\n" + 
 						"                                </div>\r\n" + 
@@ -97,13 +103,18 @@ public class getUserInfoService {
 						"                                <div class=\"col-md-3\">\r\n" + 
 						"                                    <input type=\"date\" class=\"form-control\" id=\"to_party_name\" alt=\"string\">\r\n" + 
 						"                                </div>\r\n" + 
-						"                                <label class=\"col-md-2 control-label\">结束日期</label>\r\n" + 
+						"                                <label class=\"col-md-2 control-label\">请假天数</label>\r\n" + 
 						"                                <div class=\"col-md-3\">\r\n" + 
-						"                                    <input type=\"date\" class=\"form-control\" alt=\"string\">\r\n" + 
+						"                                    <input type=\"text\" class=\"form-control\" alt=\"string\">\r\n" + 
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
 						"\r\n" + 
-						"\r\n" + 
+						"							<div class=\"form-group\">\r\n" + 
+						"                                <label class=\"col-md-3 control-label\">备注</label>\r\n" + 
+						"                                <div class=\"col-md-8\">\r\n" + 
+						"                                    <input type=\"text\" name=\"leave_remark\" class=\"form-control\" >\r\n" + 
+						"                                </div>\r\n" + 
+						"                            </div>\r\n" +
 						"                            <div class=\"form-group\">\r\n" + 
 						"                                <div class=\"col-md-11\">\r\n" + 
 						"                                    <div style=\"float:right;\">\r\n" + 
@@ -112,12 +123,7 @@ public class getUserInfoService {
 						"                                    </div>\r\n" + 
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
-						"							<div class=\"form-group\">\r\n" + 
-						"                                <label class=\"col-md-3 control-label\">备注</label>\r\n" + 
-						"                                <div class=\"col-md-8\">\r\n" + 
-						"                                    <input type=\"text\" name=\"leave_remark\" class=\"form-control\" >\r\n" + 
-						"                                </div>\r\n" + 
-						"                            </div>\r\n" + 
+
 						"                        </div>\r\n" + 
 						"                    </form>\r\n" + 
 						"");
@@ -202,9 +208,15 @@ public class getUserInfoService {
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
 						"                            <div class=\"form-group\">\r\n" + 
-						"                                <label class=\"col-md-3 control-label\">籍贯</label>\r\n" + 
+						"                                <label class=\"col-md-3 control-label\">本人籍贯</label>\r\n" + 
 						"                                <div class=\"col-md-8\">\r\n" + 
 						"                                    <input value=\""+map.get("user_origin")+"\" name=\"user_origin\" type=\"text\" class=\"form-control\" alt=\"string\" disabled>\r\n" + 
+						"                                </div>\r\n" + 
+						"                            </div>\r\n" + 
+						"                            <div class=\"form-group\">\r\n" + 
+						"                                <label class=\"col-md-3 control-label\">配偶籍贯</label>\r\n" + 
+						"                                <div class=\"col-md-8\">\r\n" + 
+						"                                    <input value=\""+map.get("user_spouse_origin")+"\" name=\"user_origin\" type=\"text\" class=\"form-control\" alt=\"string\" disabled>\r\n" + 
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
 						"                            <div class=\"form-group\">\r\n" + 
@@ -230,6 +242,9 @@ public class getUserInfoService {
 						"                                        <option value=\"轮休\">轮休</option>\r\n" + 
 						"                                        <option value=\"产假\">产假</option>\r\n" + 
 						"                                        <option value=\"丧假\">丧假</option>\r\n" + 
+						"                                        <option value=\"护理假\">护理假</option>\r\n" + 
+						"                                        <option value=\"出差\">出差</option>\r\n" + 
+						"                                        <option value=\"培训\">培训</option>\r\n" + 
 						"									  </select>\r\n" + 
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
@@ -245,9 +260,9 @@ public class getUserInfoService {
 						"                                <div class=\"col-md-3\">\r\n" + 
 						"                                    <input name=\"leave_start_day\" type=\"date\" class=\"form-control\" id=\"to_party_name\" alt=\"string\">\r\n" + 
 						"                                </div>\r\n" + 
-						"                                <label class=\"col-md-2 control-label\">结束日期</label>\r\n" + 
+						"                                <label class=\"col-md-2 control-label\">请假天数</label>\r\n" + 
 						"                                <div class=\"col-md-3\">\r\n" + 
-						"                                    <input name=\"leave_end_day\" type=\"date\" class=\"form-control\" alt=\"string\">\r\n" + 
+						"                                    <input name=\"leave_end_day\" type=\"text\" class=\"form-control\" alt=\"string\">\r\n" + 
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
 						"\r\n" + 
@@ -441,11 +456,11 @@ public class getUserInfoService {
 		
 		return pageContent.toString();
 	}
-	//插入数据后返回id
+	//插入请假数据后返回id
 	public int insertLeave(List listName, List listValue) {
 		//计算请假天数
 		String leave_day = "";
-		for(int i = 0 ;i < listName.size();i++) {
+		/*for(int i = 0 ;i < listName.size();i++) {
 			if(listName.get(i).equals("leave_day")) {
 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 				String start_day = (String) listValue.get(i+2);
@@ -458,6 +473,28 @@ public class getUserInfoService {
 				} catch (ParseException e) {
 					System.out.println("日期差计算错误");
 				}  
+				listValue.remove(i);
+				listValue.add(i, leave_day);;
+			}
+		}*/
+		for(int i = 0 ;i < listName.size();i++) {
+			if(listName.get(i).equals("leave_day")) {
+				
+				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+				String start_day = (String) listValue.get(i+2);
+				String end_day = (String) listValue.get(i+3);
+				
+				leave_day = end_day;//项目修改，原先位置的结束日期改为请假天数
+				int num_leave = Integer.parseInt(leave_day)-1;
+				//通过请假天数计算结束日期				
+				try {
+					Date d1=sdf.parse(start_day);//开始时间				
+					end_day = sdf.format(new Date(d1.getTime() + (long)num_leave * 24 * 60 * 60 * 1000));				
+				} catch (ParseException e) {
+					System.out.println("请假结束日期计算错误");
+				}
+				listValue.remove(i+3);//移除原先位置的结束日期
+				listValue.add(i+3,end_day);
 				listValue.remove(i);
 				listValue.add(i, leave_day);;
 			}
@@ -476,21 +513,27 @@ public class getUserInfoService {
 			String leave_day = "";
 			for(int i = 0 ;i < listName.size();i++) {
 				if(listName.get(i).equals("leave_day")) {
+					
 					SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 					String start_day = (String) listValue.get(i+2);
 					String end_day = (String) listValue.get(i+3);
+					
+					leave_day = end_day;//项目修改，原先位置的结束日期改为请假天数
+					int num_leave = Integer.parseInt(leave_day)-1;
+					//通过请假天数计算结束日期
 					try {
-						Date d1=sdf.parse(start_day);
-						Date d2=sdf.parse(end_day); 
-						int day = DateL.daysBetween(d1,d2)+1;
-						leave_day = String.valueOf(day);
+						Date d1=sdf.parse(start_day);//开始时间				
+						end_day = sdf.format(new Date(d1.getTime() + (long)num_leave * 24 * 60 * 60 * 1000));				
 					} catch (ParseException e) {
 						System.out.println("日期差计算错误");
-					}  
+					}
+					listValue.remove(i+3);//移除原先位置的结束日期
+					listValue.add(i+3,end_day);
 					listValue.remove(i);
 					listValue.add(i, leave_day);;
 				}
 			}
+			
 			//请假前进行一些逻辑判断，是否允许请假等
 			int user_id = Integer.parseInt((String)listValue.get(0));//用户id
 			for(int i = 0 ;i < listName.size();i++) {

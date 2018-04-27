@@ -39,7 +39,7 @@ public class relatedPerson extends HttpServlet {
 			content = rs.listRelated(id,pageNum);
 		}
 		else if(opt.equals("delete")) {
-			//人员信息页面数据展示
+			//人员相关人员删除
 			int user_id = Integer.parseInt(request.getParameter("user_id"));//人员id
 			int user_related_id = Integer.parseInt(request.getParameter("user_related_id"));//相关人员id
 			rs.deleteRelated(user_id,user_related_id);

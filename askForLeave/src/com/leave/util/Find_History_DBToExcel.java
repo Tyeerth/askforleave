@@ -150,8 +150,10 @@ public class Find_History_DBToExcel extends HttpServlet {
 	        cell = row.createCell(8);  
 	        cell.setCellValue("结束日期");
 	        cell = row.createCell(9);  
-	        cell.setCellValue("备注");
+	        cell.setCellValue("请假备注");
 	        cell = row.createCell(10);  
+	        cell.setCellValue("到岗备注");
+	        cell = row.createCell(11);  
 	        cell.setCellValue("审批状态");
 	        for(int i = 0; i < list.size(); i++) {
 	        	row = sheet.createRow(i+1);//创建第i+1行
@@ -176,7 +178,9 @@ public class Find_History_DBToExcel extends HttpServlet {
 		        cell.setCellValue((String)map.get("leave_end_day"));
 		        cell = row.createCell(9);  
 		        cell.setCellValue((String)map.get("leave_remark"));
-		        cell = row.createCell(10); 
+		        cell = row.createCell(10);  
+		        cell.setCellValue((String)map.get("leave_cut_remark"));
+		        cell = row.createCell(11); 
 		        if((Integer)map.get("leave_passed")==1) 
 		        	cell.setCellValue("通过");
 		        else cell.setCellValue("不通过");//==2

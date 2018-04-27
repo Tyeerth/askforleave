@@ -52,11 +52,15 @@ public class pageListDao {
 		return list;
 	}
 	//销假(历史记录的更新)
-	public boolean updatehistoryLeave(int id, String leave_cut_remark) {
-		//今天日期
+	public boolean updatehistoryLeave(int id, String leave_end_day, String leave_cut_remark) {
+			
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");// HH:mm:ss");
+		/*//今天日期		
 		Date date = new Date();
-		String today = format.format(date);
+		String today = format.format(date);*/
+		
+		//到岗日期
+		String end_day = leave_end_day;
 		
 		//请假天数的统计，开始日期
 		String leave_day="";
@@ -65,7 +69,7 @@ public class pageListDao {
 		String start_day = (String) list.get(1).get(0);
 		try {
 			Date d1=format.parse(start_day);
-			Date d2=format.parse(today); 
+			Date d2=format.parse(end_day); 
 			int day = DateL.daysBetween(d1,d2)+1;
 			leave_day = String.valueOf(day);
 		} catch (ParseException e) {
@@ -75,7 +79,7 @@ public class pageListDao {
 		//将请假的最后日期改成今天
 		
 		sql = "update ask_for_leave set leave_day=?,leave_end_day=?,leave_cut_remark=?,leave_cut=1 where id=?";
-		return JDBC.executeUpdate(sql, leave_day,today,leave_cut_remark,id);
+		return JDBC.executeUpdate(sql, leave_day,end_day,leave_cut_remark,id);
 	}
 	//人员信息总数
 	public String countAll() {

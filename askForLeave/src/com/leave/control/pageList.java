@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,6 +36,18 @@ public class pageList extends HttpServlet {
 		String content = "";
 		if(list == null) list = "";
 		if(list.equals("userInfo")) {
+			//消除登陆时设置的第一次登陆系统时的销假提醒cookie
+			Cookie[] cookies=request.getCookies();
+    		if(cookies != null) {
+    			for (Cookie cookie : cookies) {
+					if(cookie.getName().equals("first") && cookie.getValue().equals("1")) {
+						//cookie.setValue(null);
+						cookie.setMaxAge(2);
+						cookie.setPath("/");
+						response.addCookie(cookie);
+					}
+				}
+    		}
 			//人员信息页面数据展示
 			content = pL.listPage(pageNum);
 		}
@@ -50,10 +63,11 @@ public class pageList extends HttpServlet {
 		}
 		//销假(修改历史记录)
 		else if(list.equals("updatehistoryLeave")) {
+			String leave_end_day = request.getParameter("leave_end_day");
 			String leave_cut_remark = request.getParameter("leave_cut_remark");
 			int id = Integer.parseInt((String)request.getParameter("id"));
 			try {
-				content = pL.updatehistoryLeave(id,leave_cut_remark);
+				content = pL.updatehistoryLeave(id,leave_end_day,leave_cut_remark);
 			} catch (ClientException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

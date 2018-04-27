@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -47,16 +48,19 @@ public class Login extends HttpServlet {
 				id = String.valueOf(list.get(0).get("id"));
 				session.setAttribute("id", id);
 				
-				/*//根据管理员同户名跳转到不同的系统
-				if(user_name.equals(Config.get("db.name1"))) {
-					response.sendRedirect("http://"+Config.get("db.uri")+"/askForLeave3/Login?opt=login&user_name="+user_name+"&user_password="+user_password);
-				}*/
-				
 				List<Map<String, Object>> list2 = setupInfo();
 				application.setAttribute("setupInfo", list2);
-				//session.setAttribute("user_name", user_name);//为以后做准备
+				//设置cookie,用于判断是否是今天第一次登陆
+				Cookie cookie = new Cookie("first", "1");
+				cookie.setMaxAge(3600*12);//设置cookie过期时间为12个小时
+				//设置路径，这个路径即该工程下都可以访问该cookie 如果不设置路径，那么只有设置该cookie路径及其子路径可以访问
+				cookie.setPath("/");
+				// 将Cookie添加到Response中,使之生效 
+				response.addCookie(cookie);
+				
 				//相对user_information.html路径也可以
 				response.sendRedirect("user_information.html");
+				
 			}
 			else response.sendRedirect("login.html");
 			//这里如果恰巧html页面中也有ajax传来的id参数会有问题

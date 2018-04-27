@@ -19,7 +19,10 @@ public class updateUserDao {
 		String sql = "update leave_user set user_name=?,user_sex=?,user_born_time=?,user_work_time=?,user_origin=?,user_spouse_origin=?,user_work_address=?,user_position=?,user_position_rank=?,user_class_area=?,user_separated=?,user_phone=?,user_max_day=? where id=?";
 		Object user_origin = (String)list.get(5)+(String)list.get(6)+(String)list.get(7);
 		Object user_spouse_origin = (String)list.get(8)+(String)list.get(9)+(String)list.get(10);
-		JDBC.executeUpdate(sql,list.get(1),list.get(2),list.get(3),list.get(4),user_origin,user_spouse_origin,list.get(11),list.get(12),list.get(13),list.get(14),list.get(15),list.get(16),list.get(17),list.get(0));
+		JDBC.executeUpdate(sql,list.get(1),list.get(2),list.get(3),list.get(4),list.get(5),list.get(6),list.get(7),list.get(8),list.get(9),list.get(10),list.get(11),list.get(12),list.get(13),list.get(0));
+		/*Object user_origin = (String)list.get(5)+(String)list.get(6)+(String)list.get(7);
+		Object user_spouse_origin = (String)list.get(8)+(String)list.get(9)+(String)list.get(10);
+		JDBC.executeUpdate(sql,list.get(1),list.get(2),list.get(3),list.get(4),user_origin,user_spouse_origin,list.get(11),list.get(12),list.get(13),list.get(14),list.get(15),list.get(16),list.get(17),list.get(0));*/
 	}
 
 	public void deleteUser(int id) {

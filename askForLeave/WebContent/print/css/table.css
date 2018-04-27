@@ -63,7 +63,7 @@ h1 {
 
 #responsive {
 	text-align: left;
-	border-top: 1px dotted #000;
+	
 }
 
 .title1 {
@@ -112,4 +112,5 @@ button {
 
 .table-wrap {
 	height: 945px;
+	background-color:red;
 }

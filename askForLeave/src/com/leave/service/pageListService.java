@@ -127,21 +127,21 @@ public class pageListService {
 						"                            <div class=\"form-group\">\r\n" + 
 						"                                <label class=\"col-md-3 control-label\">本人籍贯</label>\r\n" + 
 						"                                <div class=\"col-md-6\">\r\n" + 
-						"                                    <!-- <input name=\"user_origin\" type=\"text\" class=\"form-control\" alt=\"string\">\r\n" + 
-						" -->\r\n" + 
-						"                                    <select id=\"cmbProvince\" name=\"cmbProvince\" class=\"col-md-4\"></select>    \r\n" + 
+						"                                    <input name=\"user_origin\" type=\"text\" value="+pageList.get(5)+" class=\"form-control\" alt=\"string\">\r\n" + 
+						" \r\n" + 
+						/*"                                    <select id=\"cmbProvince\" name=\"cmbProvince\" class=\"col-md-4\"></select>    \r\n" + 
 						"									<select id=\"cmbCity\" name=\"cmbCity\" class=\"col-md-4\"></select>    \r\n" + 
-						"									<select id=\"cmbArea\" name=\"cmbArea\" class=\"col-md-4\"></select>    \r\n" + 
+						"									<select id=\"cmbArea\" name=\"cmbArea\" class=\"col-md-4\"></select>    \r\n" + */
 						"						            \r\n" + 
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
 						"                            <div class=\"form-group\">\r\n" + 
 						"                                <label class=\"col-md-3 control-label\">配偶籍贯</label>\r\n" + 
 						"                                <div class=\"col-md-6\">\r\n" + 
-						"                                    <!-- <input name=\"user_spouse_origin\" type=\"text\" class=\"form-control\" alt=\"string\">\r\n" + 
-						" -->                                    <select id=\"cmbProvince2\" name=\"cmbProvince2\" class=\"col-md-4\"></select>    \r\n" + 
+						"                                    <input name=\"user_spouse_origin\" type=\"text\" value="+pageList.get(6)+" class=\"form-control\" alt=\"string\">\r\n" + 
+						/*" -->                                    <select id=\"cmbProvince2\" name=\"cmbProvince2\" class=\"col-md-4\"></select>    \r\n" + 
 						"									<select id=\"cmbCity2\" name=\"cmbCity2\" class=\"col-md-4\"></select>    \r\n" + 
-						"									<select id=\"cmbArea2\" name=\"cmbArea2\" class=\"col-md-4\"></select>\r\n" + 
+						"									<select id=\"cmbArea2\" name=\"cmbArea2\" class=\"col-md-4\"></select>\r\n" + */
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
 						/*"                            <div id=\"setupField\">\r\n" + 
@@ -327,6 +327,7 @@ public class pageListService {
 				"                                            <th> 联系电话</th>\r\n" + 
 				"                                            <th> 备注</th>\r\n" + 
 				"                                            <th> 审批状态</th>\r\n" + 
+				"                                            <th> 到岗时间</th>\r\n" + 
 				"                                            <th> 到岗</th>\r\n" + 
 				"                                        </tr>\r\n" + 
 				"                                        </thead>");
@@ -352,14 +353,15 @@ public class pageListService {
 					"                                        <td>"+map.get("user_phone")+"</td>\r\n" + 
 					"                                        <td>"+map.get("leave_remark")+"</td>\r\n" + 
 					"                                        <td>"+status+"</td>\r\n" + 
-					"                                        <td><a onclick=\"cutLeave('"+map.get("id")+"')\" href=\"#\">到岗</a></td>\r\n" + 
+					"                                        <td><input type=\"date\" id=\"leave_end_day\" name=\"leave_end_day\" ></td>\r\n" + 
+					"                                        <td><a onclick=\"cutLeave('"+map.get("id")+"')\">到岗</a></td>\r\n" + 
 					"                                        </tbody>");
 			}
 		}
 		pageContent.append("</table>");
 		return pageContent.toString();
 	}
-	public String updatehistoryLeave(int id, String leave_cut_remark) throws ClientException {
+	public String updatehistoryLeave(int id, String leave_end_day, String leave_cut_remark) throws ClientException {
 		//发送销假短信
 		leavePasswdDao lDao = new leavePasswdDao();
 		//结果没有影响，但是会让pass()里面的update更新语句多执行一次无用功
@@ -462,7 +464,7 @@ public class pageListService {
 		
 		
 		//修改销假记录
-		pLD.updatehistoryLeave(id,leave_cut_remark);
+		pLD.updatehistoryLeave(id,leave_end_day,leave_cut_remark);
 		return "";
 	}
 	//全局查找时数据总数

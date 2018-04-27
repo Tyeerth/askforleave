@@ -20,8 +20,8 @@ import com.aliyuncs.profile.IClientProfile;
 import com.leave.config.Config;
 import com.leave.db.JDBC;
 /**
- * 静态定时任务
- * @author lu
+ * 静态定时任务：发截至短信
+ * @author lucheng
  *
  */
 public class TimerMessage {
@@ -40,7 +40,8 @@ public class TimerMessage {
 			last_day = Integer.parseInt((String)list2.get(1).get(0));//设置界面中数据
 			//System.out.println("什么鬼"+last_day);
 			String name = "";//员工姓名
-			String time = "";//员工请假时间
+			String time1 = "";//员工请假时间
+			String time2 = "";
 			if(list != null) {
 				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 				Date d1 = null;Date d2=null;int day=0;
@@ -82,12 +83,13 @@ public class TimerMessage {
 							 //必填:短信签名-可在短信控制台中找到
 							 request.setSignName(Config.get("db.signName"));
 							 //必填:短信模板-可在短信控制台中找到
-							 request.setTemplateCode("SMS_117515413");
+							 request.setTemplateCode("SMS_133260961");
 							 //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
 							 //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败
 							 name = (String)map.get("user_name");
-							 time = map.get("leave_start_day")+"到"+map.get("leave_end_day");
-							 request.setTemplateParam("{\"name\":\""+name+"\",\"time\":\""+time+"\"}");
+							 time1 = ""+map.get("leave_start_day");
+							 time2 = ""+map.get("leave_end_day");
+							 request.setTemplateParam("{\"name\":\""+name+"\",\"time1\":\""+time1+"\",\"time2\":\""+time2+"\"}");
 							 //可选-上行短信扩展码(无特殊需求用户请忽略此字段)
 							 //request.setSmsUpExtendCode("90997");
 							 //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者
