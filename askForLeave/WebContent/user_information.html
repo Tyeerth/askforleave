@@ -53,6 +53,9 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/geo.js"></script>
 
+<script src="js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="css/jquery-ui.min.css"><!-- table css -->
+
 </head>
 
 
@@ -151,10 +154,12 @@
 										<select id="cmbArea2"></select> -->
 
 											</div>
-											<script type="text/javascript">    
-										addressInit('cmbProvince', 'cmbCity', 'cmbArea');
-										addressInit('cmbProvince2', 'cmbCity2', 'cmbArea2'); 
-									</script>
+											<script type="text/javascript">
+												addressInit('cmbProvince',
+														'cmbCity', 'cmbArea');
+												addressInit('cmbProvince2',
+														'cmbCity2', 'cmbArea2');
+											</script>
 											<div id="setupField">
 												<!-- <div class="col-md-3">
                                         <label class="control-label ">工作单位</label>
@@ -279,8 +284,8 @@
 												<ul class="pagination" style="visibility: visible;">
 													<li class="prev "><a
 														onclick="leavePasswdALL('delete')"> 批量删除 </a></li>
-														<li class="prev "><a
-														onclick="leavePasswdALL('add')"> 批量增加领导 </a></li>
+													<li class="prev "><a onclick="leavePasswdALL('add')">
+															批量增加领导 </a></li>
 												</ul>
 												<ul class="pagination" style="visibility: visible;"
 													id="findPageNum">
@@ -316,13 +321,15 @@
 
 		</div>
 
-
+	</div>
+	<div id="dialog-form" title="昨天应到假但未销假的人员信息">
+		<!-- 弹出框提示 -->
 	</div>
 	<script src="./resources/respond.min.js.下载"></script>
 	<script src="./resources/excanvas.min.js.下载"></script>
 	<script src="./resources/ie8.fix.min.js.下载"></script>
-	<script src="./resources/jquery.min.js.下载" type="text/javascript"></script>
-	<script src="./resources/js.cookie.min.js.下载" type="text/javascript"></script>
+<!-- js冲突...lucheng 	<script src="./resources/jquery.min.js.下载" type="text/javascript"></script>
+ -->	<script src="./resources/js.cookie.min.js.下载" type="text/javascript"></script>
 	<script src="./resources/jquery.slimscroll.min.js.下载"
 		type="text/javascript"></script>
 	<script src="./resources/jquery.blockui.min.js.下载"

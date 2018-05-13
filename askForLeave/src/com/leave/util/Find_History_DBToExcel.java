@@ -53,7 +53,7 @@ public class Find_History_DBToExcel extends HttpServlet {
 			}
 		}
 
-		String sql = "select *from leave_user a inner join ask_for_leave b on a.id=b.user_id where leave_passed!=0 and ";
+		String sql = "select *from leave_user a inner join ask_for_leave b on a.id=b.user_id where leave_passed=1 and ";
 		// 表单数据有值
 		String leave_start_day = "";
 		String leave_end_day = "";

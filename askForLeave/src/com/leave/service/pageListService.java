@@ -327,7 +327,6 @@ public class pageListService {
 				"                                            <th> 联系电话</th>\r\n" + 
 				"                                            <th> 备注</th>\r\n" + 
 				"                                            <th> 审批状态</th>\r\n" + 
-				"                                            <th> 到岗时间</th>\r\n" + 
 				"                                            <th> 到岗</th>\r\n" + 
 				"                                        </tr>\r\n" + 
 				"                                        </thead>");
@@ -353,7 +352,6 @@ public class pageListService {
 					"                                        <td>"+map.get("user_phone")+"</td>\r\n" + 
 					"                                        <td>"+map.get("leave_remark")+"</td>\r\n" + 
 					"                                        <td>"+status+"</td>\r\n" + 
-					"                                        <td><input type=\"date\" id=\"leave_end_day\" name=\"leave_end_day\" ></td>\r\n" + 
 					"                                        <td><a onclick=\"cutLeave('"+map.get("id")+"')\">到岗</a></td>\r\n" + 
 					"                                        </tbody>");
 			}
@@ -367,6 +365,8 @@ public class pageListService {
 		//结果没有影响，但是会让pass()里面的update更新语句多执行一次无用功
 		List<Map<String, Object>> list = lDao.pass(id);
 		String name = "";//员工姓名
+		String user_work_address = "";//单位
+		String user_position = "";//职务
 		String time = "";//员工请假时间
 		int user_id = 0;//获得员工id
 		if(list != null) {
@@ -445,10 +445,12 @@ public class pageListService {
 					 //必填:短信签名-可在短信控制台中找到
 					 request.setSignName(Config.get("db.signName"));
 					 //必填:短信模板-可在短信控制台中找到
-					 request.setTemplateCode("SMS_125028115");//发送给领导的模板
+					 request.setTemplateCode("SMS_134323450");//发送给领导的模板
+					 user_work_address = (String)list.get(0).get("user_work_address");
+					 user_position = (String)list.get(0).get("user_position");
 					 //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
 					 //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败
-					 request.setTemplateParam("{\"name\":\""+leader_name+"\",\"name2\":\""+name+"\"}");
+					 request.setTemplateParam("{\"name\":\""+leader_name+"\",\"user_work_address\":\""+user_work_address+"\",\"name2\":\""+user_position+name+"\"}");
 					 //可选-上行短信扩展码(无特殊需求用户请忽略此字段)
 					 //request.setSmsUpExtendCode("90997");
 					 //可选:outId为提供给业务方扩展字段,最终在短信回执消息中将此值带回给调用者

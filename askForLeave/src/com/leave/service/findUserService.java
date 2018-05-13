@@ -133,7 +133,6 @@ public class findUserService {
 				"                                            <th> 联系电话</th>\r\n" + 
 				"                                            <th> 备注</th>\r\n" + 
 				"                                            <th> 审批状态</th>\r\n" + 
-				"                                            <th> 到岗日期</th>\r\n" + 
 				"                                            <th> 到岗</th>\r\n" + 
 				"                                        </tr>\r\n" + 
 				"                                        </thead>");
@@ -159,7 +158,6 @@ public class findUserService {
 					"                                        <td>"+map.get("user_phone")+"</td>\r\n" + 
 					"                                        <td>"+map.get("leave_remark")+"</td>\r\n" + 
 					"                                        <td>"+status+"</td>\r\n" + 
-					"                                        <td><input type=\"date\" id=\"leave_end_day\" name=\"leave_end_day\" ></td>\r\n" + 
 					"                                        <td><a onclick=\"cutLeave('"+map.get("id")+"')\" href=\"#\">到岗</a></td>\r\n" + 
 					"                                        </tbody>");
 			}

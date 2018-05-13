@@ -40,17 +40,17 @@ var uid = -1;// 全局id
 // 删除相关领导
 function deleteRelated(ids, user_related_id) {
 	ids += '';
-	if(ids.indexOf("$") > 0 ){//删除共同领导
+	if (ids.indexOf("$") > 0) {// 删除共同领导
 		$.post("batchOperate?opt=deleteCommonLeader", {
 			"IDS" : ids,
 			"user_related_id" : user_related_id
 		}, function(data, status) {
 			if (status == 'success') {
-				window.location.href = 'user_related_person.html?id=-1&ids=' + ids;
+				window.location.href = 'user_related_person.html?id=-1&ids='
+						+ ids;
 			}
 		})
-	}
-	else{//个人相关领导删除
+	} else {// 个人相关领导删除
 		$.post("relatedPerson?opt=delete", {
 			"user_id" : ids,
 			"user_related_id" : user_related_id
@@ -65,19 +65,18 @@ function deleteRelated(ids, user_related_id) {
 function relatedPersonLoad(pageNum) {
 	lefter();
 	var id = getUrlParam('id');
-	if(id != -1){
+	if (id != -1) {
 		$("#related_person").load("relatedPerson?opt=list", {
 			"pageNum" : pageNum,
 			"id" : id
 		});
-	}
-	else if(id == -1){
+	} else if (id == -1) {
 		var ids = getUrlParam("ids");
 		$("#related_person").load("batchOperate?opt=listRelated", {
 			"IDS" : ids
 		});
 	}
-	
+
 }
 // 登录
 function login() {
@@ -96,28 +95,31 @@ function leavePasswdALL(opt) {
 	var strIDs = '';
 	for (var i = 0; i < ids.length; i++) {
 		if (ids[i].checked) {
-			//拼接选中该的id字符串
+			// 拼接选中该的id字符串
 			strIDs += ids[i].value + '$';
 		}
 	}
-	
+
 	strIDs = strIDs.substr(0, strIDs.length - 1);
 	if (opt == 'isLeave') {// 审批通过
-		//leavePasswd(id, 'pass');
-		$.post("batchOperate?opt=pass",{"IDS":strIDs},function(data,status){
-			if(status == 'success'){
+		// leavePasswd(id, 'pass');
+		$.post("batchOperate?opt=pass", {
+			"IDS" : strIDs
+		}, function(data, status) {
+			if (status == 'success') {
 				window.location.href = 'isleave.html';
 			}
 		});
 	} else if (opt == 'delete') {// 删除
-		$.post("batchOperate?opt=delete",{"IDS":strIDs},function(data,status){
-			if(status == 'success'){
+		$.post("batchOperate?opt=delete", {
+			"IDS" : strIDs
+		}, function(data, status) {
+			if (status == 'success') {
 				window.location.href = 'user_information.html';
 			}
 		});
-	}
-	else if (opt == 'add') {// 批量增加相关领导
-		//window.location.href = 'add_related_person.html?id=-1&ids=' + strIDs;
+	} else if (opt == 'add') {// 批量增加相关领导
+		// window.location.href = 'add_related_person.html?id=-1&ids=' + strIDs;
 		window.location.href = 'user_related_person.html?id=-1&ids=' + strIDs;
 	}
 }
@@ -288,35 +290,35 @@ function get_personKind(id) {
 
 // 人员相关领导信息录入
 function get_userInfo2(opt) {
-	//领导id
+	// 领导id
 	var related_leader_id = document.getElementsByName("related_leader_id")[0].value;
-	
+
 	var id = getUrlParam('id');
-	if(id != -1){
-		$.post("getUserInfo?opt=addRelated",{
-			"leave_user_id":id,
+	if (id != -1) {
+		$.post("getUserInfo?opt=addRelated", {
+			"leave_user_id" : id,
 			"related_leader_id" : related_leader_id
-		},function(data,status){
-			if(status == 'success'){
-				window.location.href = 'user_related_person.html?id='+id;
+		}, function(data, status) {
+			if (status == 'success') {
+				window.location.href = 'user_related_person.html?id=' + id;
 			}
 		});
-	}
-	else if(id == -1){
-		//多选选中的id
+	} else if (id == -1) {
+		// 多选选中的id
 		var ids = getUrlParam("ids");
 		$.post("batchOperate?opt=" + opt, {
 			"IDS" : ids,
 			"related_leader_id" : related_leader_id
-		},function(data,status){
-			if(status == 'success'){
-				window.location.href = 'user_related_person.html?id=-1&ids='+ids;
+		}, function(data, status) {
+			if (status == 'success') {
+				window.location.href = 'user_related_person.html?id=-1&ids='
+						+ ids;
 			}
 		});
 	}
 }
 // 请假
-//请假操作
+// 请假操作
 function get_userInfo(opt) {
 	var data = $("#askForLeave").serialize();
 	// alert(data);
@@ -705,17 +707,17 @@ function cuthistoryLeave(pageNum) {
 }
 // 销假(修改历史记录)
 function cutLeave(ask_for_leave_id) {
-	//选择到岗日期
+	// 选择到岗日期
 	var leave_end_day = document.getElementById("leave_end_day").value;
-	if(leave_end_day == "" || leave_end_day == null) {
+	if (leave_end_day == "" || leave_end_day == null) {
 		alert("请选择到岗日期");
-		return ;
+		return;
 	}
-	
+
 	var value = prompt("到岗备注", "");
 	var id = ask_for_leave_id;
 	$.post("pageList?list=updatehistoryLeave", {
-		"leave_end_day":leave_end_day,
+		"leave_end_day" : leave_end_day,
 		"leave_cut_remark" : value,
 		"id" : id,
 		"pageNum" : 1
@@ -852,33 +854,50 @@ function GetRequest() {
 		strs = str.split("&");
 		for (var i = 0; i < strs.length; i++) {
 			theRequest[i] = unescape(strs[i].split("=")[1]);
-			//alert(unescape(strs[i].split("=")[1]));
+			// alert(unescape(strs[i].split("=")[1]));
 		}
 	}
 	return theRequest;
 }
-//获取cookie
-function getCookie(cname){
-  var name = cname + "=";
-  var ca = document.cookie.split(';');
-  for(var i=0; i<ca.length; i++) {
-    var c = ca[i].trim();
-    if (c.indexOf(name)==0) 
-    	return c.substring(name.length,c.length);
-  }
-  return "";
+// 获取cookie
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i].trim();
+		if (c.indexOf(name) == 0)
+			return c.substring(name.length, c.length);
+	}
+	return "";
+}
+// 提示框
+function diag() {
+	$("#dialog-form").dialog({
+		autoOpen : false,
+		height : 300,
+		width : 450,
+		modal : true,
+		buttons : {
+			"关闭" : function() {
+				$(this).dialog("close");
+			}
+		},
+	});
 }
 // 人员信息页面数据加载
 function pageLoad(pageNum) {
+	diag();//弹出框初始化
 	var first = getCookie("first");
-	//alert(first);
-	if(first == "1") $.post("remindMessage", 
-		function(data, status) {
+	// alert(first);
+	if (first == "1")
+		$.post("remindMessage", function(data, status) {
 			if (data != '' && data != null) {
-				alert(data)
+				// alert(data)
+				$("#dialog-form").append(data);
+				$("#dialog-form").dialog("open");
 			}
-	});
-	
+		});
+
 	lefter();
 	// alert();
 	$("#user_info").load("pageList?list=userInfo", {

@@ -57,7 +57,7 @@ public class pageList extends HttpServlet {
 		}//历史记录
 		else if(list.equals("historyLeave")) {
 			content = pL.historyLeave(pageNum);
-		}//销假查询(历史记录)
+		}//销假页面数据加载查询(历史记录)
 		else if(list.equals("cuthistoryLeave")) {
 			content = pL.cuthistoryLeave(pageNum);
 		}

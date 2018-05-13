@@ -38,7 +38,7 @@ public class DBToExcel extends HttpServlet {
 		quarterly = request.getParameter("quarterly");
 		select_year = request.getParameter("select_year");
 		//根据姓名，放在一起
-		String sql = "select *from leave_user a inner join ask_for_leave b on a.id=b.user_id where leave_passed!=0 order by user_name";//未审核的不算历史
+		String sql = "select *from leave_user a inner join ask_for_leave b on a.id=b.user_id where leave_passed=1 order by user_name";//未审核的不算历史
 		List<Map<String, Object>> list = JDBC.executeQuery(sql);
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		boolean b = false; boolean b2 = false;

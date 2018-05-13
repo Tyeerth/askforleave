@@ -11,7 +11,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.AbstractDocument.Content;
 
 import com.leave.db.JDBC;
 
@@ -37,11 +36,18 @@ public class remindMessage extends HttpServlet {
 		
 		if(list != null && list.size() !=0) {
 			StringBuffer content = new StringBuffer("");
-			content.append("昨天应到假但未销假的人员信息\\\n姓名      单位           职务          应到假日期     联系电话\\\n");
+			content.append("<table border=\"1\" cellspacing=\"0\" >\r\n" + 
+					"		<tr class=\"ui-widget-header \">\r\n" + 
+					"			<th>姓名</th>\r\n" + 
+					"			<th>单位</th>\r\n" + 
+					"			<th>职务</th>\r\n" + 
+					"			<th>应到假日期</th>\r\n" + 
+					"			<th>联系电话</th>\r\n" + 
+					"		</tr>\r\n");
 			for (Map<String, Object> map : list) {
-				content.append(map.get("user_name")+"   "+map.get("user_work_address")+"  "+map.get("user_position")+"  "+map.get("leave_end_day")+"  "+map.get("user_phone"));
+				content.append("<tr><td>"+map.get("user_name")+"</td><td>"+map.get("user_work_address")+"</td><td>"+map.get("user_position")+"</td><td>"+map.get("leave_end_day")+"</td><td>"+map.get("user_phone")+"</td></tr>");
 			}
-			content.append("");
+			content.append("</table>");
 			response.getWriter().write(content.toString());
 			System.out.println(content);
 		}
