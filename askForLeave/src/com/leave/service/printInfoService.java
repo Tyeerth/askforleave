@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import com.leave.config.Config;
 import com.leave.dao.printInfoDao;
 import com.leave.util.DateL;
 
@@ -70,7 +71,7 @@ public class printInfoService {
 							"            <p style=\"display:inline;\">备注：此批复拿回单位备案<br>温馨提示:平安才是离家最近的路，销假电话0892—8332135</p>"+
 							"            </div>" +
 							"            <div style=\"float:right;width:300px;height:130px;\"> " +
-							"			 <p style=\"margin-left:110px;margin-top:75px;\">中共谢通门县委组织部</p>\r\n" + 
+							"			 <p style=\"margin-left:110px;margin-top:75px;\">"+Config.get("db.xtmxtitle")+"</p>\r\n" + 
 							"            <p class=\"date2\" style=\"text-align: right;margin-bottom:0;margin-right:30px;\"><u>&nbsp;&nbsp;"+cal.get(Calendar.YEAR)+"&nbsp;&nbsp;</u>年<u>&nbsp;&nbsp;"+(cal.get(Calendar.MONTH)+1)+"&nbsp;&nbsp;</u>月<u>&nbsp;&nbsp;"+cal.get(Calendar.DAY_OF_MONTH)+"&nbsp;&nbsp;</u>日</p>\r\n" + 
 							"            </div></div>");
 				}

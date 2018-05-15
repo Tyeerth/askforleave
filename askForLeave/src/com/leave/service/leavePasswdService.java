@@ -56,7 +56,7 @@ public class leavePasswdService {
 			 request.setSignName(Config.get("db.signName"));
 			 System.out.println(Config.get("db.signName"));
 			 //必填:短信模板-可在短信控制台中找到
-			 request.setTemplateCode("SMS_125023145");
+			 request.setTemplateCode(Config.get("db.SMS_1"));
 			 //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
 			 //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败
 			 name = (String)list.get(0).get("user_name");
@@ -118,7 +118,7 @@ public class leavePasswdService {
 					 //必填:短信签名-可在短信控制台中找到
 					 request.setSignName(Config.get("db.signName"));
 					 //必填:短信模板-可在短信控制台中找到
-					 request.setTemplateCode("SMS_134313455");//发送给领导的模板
+					 request.setTemplateCode(Config.get("db.SMS_2"));//发送给领导的模板
 					 //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
 					 //友情提示:如果JSON中需要带换行符,请参照标准的JSON协议对换行符的要求,比如短信内容中包含\r\n的情况在JSON中需要表示成\\r\\n,否则会导致JSON在服务端解析失败
 					 request.setTemplateParam("{\"name\":\""+leader_name+"\",\"user_work_address\":\""+user_work_address+"\",\"name2\":\""+user_position+name+"\",\"kind\":\""+kind+"\",\"day\":\""+day+"\",\"time1\":\""+time1+"\",,\"time2\":\""+time2+"\"}");

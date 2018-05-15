@@ -69,3 +69,15 @@ db.properties
 > `db.queueName=Alicom-Queue-xxxxxxxx-SmsUp`//短信上行消息接收，xxxxx替换成自己的信息，用来接收发给系统的信息
 >
 > `db.signName=`//短信签名
+>
+> `db.SMS_1=`//短信模板1:请假成功发送个人短信
+>
+> `db.SMS_2`=//2:请假成功发送给相关领导短信
+>
+> `db.SMS_3`=//3:请假时间到期前发送短信
+>
+> `db.SMS_4`=//4:销假成功发送个人短信
+>
+> `db.SMS_5`=//5:销假成功发送给县官领导短信
+>
+> `db.xtmxtitle`=测试title//打印页面的一处文字显示(不重要~)
