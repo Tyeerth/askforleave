@@ -36,7 +36,7 @@ public class findUser extends HttpServlet {
 		List listValue = new ArrayList();
 		if(opt == null) opt = "";
 		//获取所有有用参数
-		Enumeration enu=request.getParameterNames();  
+		Enumeration enu=request.getParameterNames();
 		while(enu.hasMoreElements()){
 			String paraName=(String)enu.nextElement();
 			String paravalue = request.getParameter(paraName);

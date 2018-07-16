@@ -30,12 +30,8 @@ public class printInfoDao {
 		//事假数据统计
 		String sql = "select count(*) as a from ask_for_leave where leave_kind='事假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";//leave_passed=1表示审核通过的历史记录
 		List<List> list = JDBC.list(sql,user_id);
-		if(list == null) {
-			a = 0;//请事假0次
-			//则b=0
-			b=0;
-		}
-		else {
+		//System.out.println(user_id);
+		if(list != null)  {
 			a = Integer.parseInt(String.valueOf(list.get(1).get(0)));
 			sql = "select leave_day,leave_start_day from ask_for_leave where leave_kind='事假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 			list = JDBC.list(sql, user_id);
@@ -50,12 +46,7 @@ public class printInfoDao {
 		//病假数据统计
 		sql = "select count(*) as a from ask_for_leave where leave_kind='病假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 		list = JDBC.list(sql,user_id);
-		if(list == null) {
-			c = 0;//请病假0次
-			//则b=0
-			d=0;
-		}
-		else {
+		if(list != null) {
 			c = Integer.parseInt(String.valueOf(list.get(1).get(0)));
 			sql = "select leave_day,leave_start_day from ask_for_leave where leave_kind='病假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 			list = JDBC.list(sql, user_id);
@@ -70,12 +61,7 @@ public class printInfoDao {
 		//轮休数据统计
 		sql = "select count(*) as a from ask_for_leave where leave_kind='轮休' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 		list = JDBC.list(sql,user_id);
-		if(list == null) {
-			e = 0;//请病假0次
-			//则b=0
-			f=0;
-		}
-		else {
+		if(list != null) {
 			e = Integer.parseInt(String.valueOf(list.get(1).get(0)));
 			sql = "select leave_day,leave_start_day from ask_for_leave where leave_kind='轮休' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 			list = JDBC.list(sql, user_id);
@@ -89,12 +75,7 @@ public class printInfoDao {
 		//休假数据统计
 		sql = "select count(*) as a from ask_for_leave where leave_kind='休假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 		list = JDBC.list(sql,user_id);
-		if(list == null) {
-			A = 0;//请病假0次
-			//则b=0
-			B=0;
-		}
-		else {
+		if(list != null) {
 			A = Integer.parseInt(String.valueOf(list.get(1).get(0)));
 			sql = "select leave_day,leave_start_day from ask_for_leave where leave_kind='休假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 			list = JDBC.list(sql, user_id);
@@ -111,12 +92,7 @@ public class printInfoDao {
 		//产假数据统计
 		sql = "select count(*) as a from ask_for_leave where leave_kind='产假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 		list = JDBC.list(sql,user_id);
-		if(list == null) {
-			C = 0;//请病假0次
-			//则b=0
-			D=0;
-		}
-		else {
+		if(list != null) {
 			C = Integer.parseInt(String.valueOf(list.get(1).get(0)));
 			sql = "select leave_day,leave_start_day from ask_for_leave where leave_kind='产假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 			list = JDBC.list(sql, user_id);
@@ -130,12 +106,7 @@ public class printInfoDao {
 		//丧假数据统计
 		sql = "select count(*) as a from ask_for_leave where leave_kind='丧假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 		list = JDBC.list(sql,user_id);
-		if(list == null) {
-			E = 0;//请病假0次
-			//则b=0
-			F=0;
-		}
-		else {
+		if(list != null) {
 			E = Integer.parseInt(String.valueOf(list.get(1).get(0)));
 			sql = "select leave_day,leave_start_day from ask_for_leave where leave_kind='丧假' and user_id=? and leave_passed=1 and leave_start_day like '%"+year+"%'";
 			list = JDBC.list(sql, user_id);

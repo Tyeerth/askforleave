@@ -202,7 +202,7 @@ public class pageListService {
 						"                            <div class=\"form-group\">\r\n" + 
 						"                                <div class=\"text-right col-md-9\">\r\n" + 
 						"                                    <a class=\"btn blue\" role=\"button\" onclick=\"update_user()\">修改</a>\r\n" + 
-						"                                    <button type=\"reset\" class=\"btn default\">取消</button>\r\n" + 
+						"                                    <a class=\"btn blue\" role=\"button\" onclick=\"cancle_user()\">取消</a>\r\n" + 
 						"                                </div>\r\n" + 
 						"                            </div>\r\n" + 
 						"                        </div>\r\n" + 
@@ -472,17 +472,17 @@ public class pageListService {
 	//全局查找时数据总数
 	public String countAll() {
 		String count = pLD.countAll();
-		String content = "<a>共有<strong>"+count+"</stong>条数据</a>";
+		String content = "<a>共有<strong id=\"countAll\">"+count+"</stong>条数据</a>";
 		return content;
 	}
 	public String countAllLeave() {
 		String count = pLD.countAllLeave();
-		String content = "<a>共有<strong>"+count+"</stong>条数据</a>";
+		String content = "<a>共有<strong id=\"countAll\">"+count+"</stong>条数据</a>";
 		return content;
 	}
 	public String countAllHistory() {
 		String count = pLD.countAllHistory();
-		String content = "<a>共有<strong>"+count+"</stong>条数据</a>";
+		String content = "<a>共有<strong id=\"countAll\">"+count+"</stong>条数据</a>";
 		return content;
 	}
 	public String countAllcutHistory() {
@@ -492,21 +492,21 @@ public class pageListService {
 	}
 	//模糊匹配查找时数据总数
 	public String countAll2(HttpSession session) {
-		String content = "<a>共有<strong>"+session.getAttribute("userInfoNum")+"</stong>条数据</a>";
+		String content = "<a>共有<strong id=\"countAll\">"+session.getAttribute("userInfoNum")+"</stong>条数据</a>";
 		//System.out.println(session.getAttribute("userInfoNum"));
 		return content;
 	}
 	public String countAllLeave2(HttpSession session) {
-		String content = "<a>共有<strong>"+session.getAttribute("isLeaveNum")+"</stong>条数据</a>";
+		String content = "<a>共有<strong id=\"countAll\">"+session.getAttribute("isLeaveNum")+"</stong>条数据</a>";
 		//System.out.println(session.getAttribute("leaveHistoryNum"));
 		return content;
 	}
 	public String countAllHistory2(HttpSession session) {
-		String content = "<a>共有<strong>"+session.getAttribute("leaveHistoryNum")+"</stong>条数据</a>";
+		String content = "<a>共有<strong id=\"countAll\">"+session.getAttribute("leaveHistoryNum")+"</stong>条数据</a>";
 		return content;
 	}
 	public String countAllcutHistory2(HttpSession session) {
-		String content = "<a>共有<strong>"+session.getAttribute("cutLeaveNum")+"</stong>条数据</a>";
+		String content = "<a>共有<strong id=\"countAll\">"+session.getAttribute("cutLeaveNum")+"</stong>条数据</a>";
 		return content;
 	}
 	//临时请假记录

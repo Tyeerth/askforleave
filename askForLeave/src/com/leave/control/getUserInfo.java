@@ -48,10 +48,10 @@ public class getUserInfo extends HttpServlet {
 			out.write(content);
 			out.close();
 		}
+		//请假数据详情
 		else if(opt.equals("idLeavedInfo")) {
 			int id = Integer.parseInt(request.getParameter("id"));
 			String content = gus.idLeavedInfo(id);
-			//if(content == null) content = "";
 			out.write(content);
 			out.close();
 		}

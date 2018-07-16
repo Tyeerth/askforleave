@@ -347,35 +347,6 @@ function get_userInfo(opt) {
 	});
 	// get_personKind(personId);
 }
-// 临时请假历史信息页面分页
-function pageChange4(opt, find) {
-	if (find == 'defaultfind') {
-		if (opt == 'next') {
-			num++;
-			temporaryHistoryLeave(num);
-		} else if (opt == 'prev') {
-			num--;
-			if (num <= 1)
-				num = 1;
-			temporaryHistoryLeave(num);
-		} else if (opt == 'first') {
-			temporaryHistoryLeave(1);
-		}
-	} else if (find == 'find') {
-		if (opt == 'next') {
-			findnum++;
-
-		} else if (opt == 'prev') {
-			findnum--;
-			if (findnum <= 1)
-				findnum = 1;
-		} else if (opt == 'first') {
-			findnum = 1;
-		}
-		findPageNum(findnum);
-		findTemporaryHistoryLeave('2');
-	}
-}
 // 查找临时请假历史信息
 function findTemporaryHistoryLeave(again) {
 	if (again == 1) {
@@ -392,29 +363,15 @@ function findTemporaryHistoryLeave(again) {
 						// alert(data);
 						// $("#leave_passed").html(data);
 						$("#temporary_Leave").html(data);
-						$("#findPageNum")
-								.html(
-										"<li class=\"prev \">\r\n"
-												+ "                                                    <a onclick=\"pageChange4('first','find')\" title=\"First\" id=\"firstpage\">\r\n"
-												+ "                                                        首页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"prev\">\r\n"
-												+ "                                                    <a onclick=\"pageChange4('prev','find')\" title=\"Prev\" id=\"prepage\">\r\n"
-												+ "                                                        上一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"next pagination\">\r\n"
-												+ "                                                    <a onclick=\"pageChange4('next','find')\" title=\"Next\" id=\"nextpage\">\r\n"
-												+ "                                                        下一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>");
+					
 						// 第一次或点击首页查询时触发
 						if (findnum == 1) {
 							$("#countAll").load(
 									"pageList?list=countAllTemporaryHistory2",
 									{
 										"pageNum" : 1
+									},function(data,status){
+										getCurrentPageNum();	//当前页
 									});
 						}
 					});
@@ -426,39 +383,21 @@ function find_cutLeave(again) {
 		num = 1;
 		findPageNum(1);
 	}
-
 	var data = $("#find_cutLeave").serialize();
 	// alert("$"+data);
-	$
-			.post(
-					"findUser?opt=find_cutLeave",
+	$.post("findUser?opt=find_cutLeave",
 					data,
 					function(data) {
 						// alert(data);
 						// $("#leave_passed").html(data);
 						$("#cutLeave").html(data);
-						$("#findPageNum")
-								.html(
-										"<li class=\"prev \">\r\n"
-												+ "                                                    <a onclick=\"pageChange5('first','find')\" title=\"First\" id=\"firstpage\">\r\n"
-												+ "                                                        首页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"prev\">\r\n"
-												+ "                                                    <a onclick=\"pageChange5('prev','find')\" title=\"Prev\" id=\"prepage\">\r\n"
-												+ "                                                        上一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"next pagination\">\r\n"
-												+ "                                                    <a onclick=\"pageChange5('next','find')\" title=\"Next\" id=\"nextpage\">\r\n"
-												+ "                                                        下一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>");
 						// 第一次或点击首页查询时触发
 						if (findnum == 1) {
 							$("#countAll").load(
 									"pageList?list=countAllcutHistory2", {
 										"pageNum" : 1
+									},function(data,status){
+										getCurrentPageNum();	//当前页
 									});
 						}
 					});
@@ -470,39 +409,21 @@ function find_isleave(again) {
 		num = 1;
 		findPageNum(1);
 	}
-
 	var data = $("#find_isleave").serialize();
 	// alert("$"+data);
-	$
-			.post(
-					"findUser?opt=find_isleave",
+	$.post("findUser?opt=find_isleave",
 					data,
 					function(data) {
 						// alert(data);
 						// $("#leave_passed").html(data);
 						$("#leave_passed").html(data);
-						$("#findPageNum")
-								.html(
-										"<li class=\"prev \">\r\n"
-												+ "                                                    <a onclick=\"pageChange2('first','find')\" title=\"First\" id=\"firstpage\">\r\n"
-												+ "                                                        首页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"prev\">\r\n"
-												+ "                                                    <a onclick=\"pageChange2('prev','find')\" title=\"Prev\" id=\"prepage\">\r\n"
-												+ "                                                        上一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"next pagination\">\r\n"
-												+ "                                                    <a onclick=\"pageChange2('next','find')\" title=\"Next\" id=\"nextpage\">\r\n"
-												+ "                                                        下一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>");
 						// 第一次或点击首页查询时触发
 						if (findnum == 1) {
 							$("#countAll").load("pageList?list=countAllLeave2",
 									{
 										"pageNum" : 1
+									},function(data,status){
+										getCurrentPageNum();	//当前页
 									});
 						}
 					});
@@ -516,36 +437,18 @@ function find_history(again) {
 	}
 	var data = $("#find_history").serialize();
 	// alert("$"+data);
-	$
-			.post(
-					"findUser?opt=userLeave",
+	$.post("findUser?opt=userLeave",
 					data,
 					function(data) {
 						// alert(data);
 						// $("#leave_history").html(data);
 						$("#leave_history").html(data);// body --id
-						$("#findPageNum")
-								.html(
-										"<li class=\"prev \">\r\n"
-												+ "                                                    <a onclick=\"pageChange3('first','find')\" title=\"First\" id=\"firstpage\">\r\n"
-												+ "                                                        首页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"prev\">\r\n"
-												+ "                                                    <a onclick=\"pageChange3('prev','find')\" title=\"Prev\" id=\"prepage\">\r\n"
-												+ "                                                        上一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"next pagination\">\r\n"
-												+ "                                                    <a onclick=\"pageChange3('next','find')\" title=\"Next\" id=\"nextpage\">\r\n"
-												+ "                                                        下一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>");
 						// 第一次或点击首页查询时触发
 						if (findnum == 1) {
-							$("#countAll").load(
-									"pageList?list=countAllHistory2", {
+							$("#countAll").load("pageList?list=countAllHistory2", {
 										"pageNum" : 1
+									},function(data,status){
+										getCurrentPageNum();	//当前页
 									});
 						}
 					});
@@ -557,40 +460,18 @@ function find_user(again) {
 		findnum = 1;
 		num = 1;
 		findPageNum(1);
+		
+		$("#countAll").load("pageList?list=countAll2", {
+			"pageNum" : 1
+		},function(data,status){
+			getCurrentPageNum();	//当前页
+		});
 	}
 
 	var data = $("#findForm").serialize();
 	// alert("$"+data);
-	$
-			.post(
-					"findUser?opt=userInfo",
-					data,
-					function(data) {
-						// alert(data);
+	$.post("findUser?opt=userInfo",data,function(data) {
 						$("#user_info").html(data);
-						$("#findPageNum")
-								.html(
-										"<li class=\"prev \">\r\n"
-												+ "                                                    <a onclick=\"pageChange('first','find')\" title=\"First\" id=\"firstpage\">\r\n"
-												+ "                                                        首页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"prev\">\r\n"
-												+ "                                                    <a onclick=\"pageChange('prev','find')\" title=\"Prev\" id=\"prepage\">\r\n"
-												+ "                                                        上一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>\r\n"
-												+ "                                                <li class=\"next pagination\">\r\n"
-												+ "                                                    <a onclick=\"pageChange('next','find')\" title=\"Next\" id=\"nextpage\">\r\n"
-												+ "                                                        下一页\r\n"
-												+ "                                                    </a>\r\n"
-												+ "                                                </li>");
-						// 第一次或点击首页查询时触发
-						if (findnum == 1) {
-							$("#countAll").load("pageList?list=countAll2", {
-								"pageNum" : 1
-							});
-						}
 					});
 }
 // 导出查询出来的信息成excel表
@@ -618,6 +499,10 @@ function find_quarterly(quarterly) {
 	// $('<form method="post" action="' + url +
 	// '"></form>').appendTo('body').submit();
 }
+//修改人员信息取消
+function cancle_user(){
+	window.location.href = 'user_information.html?opt=history';
+}
 // 修改人员信息
 function update_user() {
 	var phone = document.getElementById("user_phone").value;
@@ -630,7 +515,7 @@ function update_user() {
 	$.post("updateUser?opt=update", data, function(data, status) {
 		if (status == 'success') {
 			alert("修改成功");
-			window.location.href = 'user_information.html';
+			window.location.href = 'user_information.html?opt=history';
 		}
 	});
 
@@ -674,6 +559,8 @@ function temporaryHistoryLeave(pageNum) {
 	});
 	$("#countAll").load("pageList?list=countAllTemporaryHistory", {
 		"pageNum" : 1
+	},function(data,status){
+		getCurrentPageNum();	//当前页
 	});
 }
 // 临时请假记录
@@ -689,10 +576,14 @@ function historyLeave(pageNum) {
 	$("#leave_history").load("pageList?list=historyLeave", {
 		"pageNum" : pageNum
 	});
+	// 统计数据数目
 	$("#countAll").load("pageList?list=countAllHistory", {
 		"pageNum" : 1
+	},function(data,status){
+		getCurrentPageNum();	//当前页
 	});
-	$("#setupField").load("SetupField?opt=listField");// 统计数据数目
+	//页面下拉框数据加载
+	$("#setupField").load("SetupField?opt=listField");
 }
 // 销假记录查询(部分历史请假记录)
 function cuthistoryLeave(pageNum) {
@@ -700,8 +591,11 @@ function cuthistoryLeave(pageNum) {
 	$("#cutLeave").load("pageList?list=cuthistoryLeave", {
 		"pageNum" : pageNum
 	});
+	//总页数统计
 	$("#countAll").load("pageList?list=countAllcutHistory", {
 		"pageNum" : 1
+	},function(data,status){
+		getCurrentPageNum();	//当前页
 	});
 	// $("#setupField").load("SetupField?opt=listField");//统计数据数目
 }
@@ -730,19 +624,6 @@ function cutLeave(ask_for_leave_id) {
 }
 // 销假页面分页
 function pageChange5(opt, find) {
-	if (find == 'defaultfind') {
-		if (opt == 'next') {
-			num++;
-			cuthistoryLeave(num);
-		} else if (opt == 'prev') {
-			num--;
-			if (num <= 1)
-				num = 1;
-			cuthistoryLeave(num);
-		} else if (opt == 'first') {
-			cuthistoryLeave(1);
-		}
-	} else if (find == 'find') {
 		if (opt == 'next') {
 			findnum++;
 
@@ -755,23 +636,10 @@ function pageChange5(opt, find) {
 		}
 		findPageNum(findnum);
 		find_cutLeave('2');
-	}
+		getCurrentPageNum(); 	//当前页
 }
-// 请假审批页面分页
-function pageChange3(opt, find) {
-	if (find == 'defaultfind') {
-		if (opt == 'next') {
-			num++;
-			historyLeave(num);
-		} else if (opt == 'prev') {
-			num--;
-			if (num <= 1)
-				num = 1;
-			historyLeave(num);
-		} else if (opt == 'first') {
-			historyLeave(1);
-		}
-	} else if (find == 'find') {
+//临时请假历史信息页面分页
+function pageChange4(opt, find) {
 		if (opt == 'next') {
 			findnum++;
 
@@ -783,37 +651,28 @@ function pageChange3(opt, find) {
 			findnum = 1;
 		}
 		findPageNum(findnum);
-		find_history('2');
-	}
+		findTemporaryHistoryLeave('2');
+		getCurrentPageNum();	//当前页
 }
-// 请假审批页面数据加载
-function isleaveLoad(pageNum) {
-	lefter();
-	$("#leave_passed").load("pageList?list=leaveInfo", {
-		"pageNum" : pageNum
-	});
-	$("#countAll").load("pageList?list=countAllLeave", {
-		"pageNum" : 1
-	});
+// 请假审批页面分页
+function pageChange3(opt, find) {
+		if (opt == 'next') {
+			findnum++;
+		} else if (opt == 'prev') {
+			findnum--;
+			if (findnum <= 1)
+				findnum = 1;
+		} else if (opt == 'first') {
+			findnum = 1;
+		}
+		findPageNum(findnum);
+		find_history('2');
+		getCurrentPageNum(); 	//当前页
 }
 // 请假审批页面分页
 function pageChange2(opt, find) {
-	if (find == 'defaultfind') {
-		if (opt == 'next') {
-			num++;
-			isleaveLoad(num);
-		} else if (opt == 'prev') {
-			num--;
-			if (num <= 1)
-				num = 1;
-			isleaveLoad(num);
-		} else if (opt == 'first') {
-			isleaveLoad(1);
-		}
-	} else if (find == 'find') {
 		if (opt == 'next') {
 			findnum++;
-
 		} else if (opt == 'prev') {
 			findnum--;
 			find_isleave();
@@ -822,7 +681,36 @@ function pageChange2(opt, find) {
 		}
 		findPageNum(findnum);
 		find_isleave('2');
-	}
+		getCurrentPageNum();//当前页
+}
+//人员信息页面分页
+function pageChange(opt, find) {
+		getCurrentPageNum();	//当前页码
+		if (opt == 'next') {
+			findnum++;
+		} else if (opt == 'prev') {
+			findnum--;
+			if (findnum <= 1)
+				findnum = 1;
+		} else if (opt == 'first') {
+			findnum = 1;
+		}
+		findPageNum(findnum);
+		find_user('2');
+		getCurrentPageNum();
+}
+//请假审批页面数据加载
+function isleaveLoad(pageNum) {
+	lefter();
+	$("#leave_passed").load("pageList?list=leaveInfo", {
+		"pageNum" : pageNum
+	});
+	$("#countAll").load("pageList?list=countAllLeave", {
+		"pageNum" : 1
+	},function(data,status){
+		getCurrentPageNum();	//当前页
+	});
+	
 }
 // 修改人员页面数据加载
 function updatePageLoad() {
@@ -884,29 +772,109 @@ function diag() {
 		},
 	});
 }
-// 人员信息页面数据加载
+//设置cookie,exdays:过期天数
+function setCookie(cname,cvalue,exdays){
+  var d = new Date();
+  d.setTime(d.getTime()+(exdays*24*60*60*1000));
+  var expires = "expires="+d.toGMTString();
+  document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+// 获取cookie
+function getCookie(cname) {
+	var name = cname + "=";
+	var ca = document.cookie.split(';');
+	for (var i = 0; i < ca.length; i++) {
+		var c = ca[i].trim();
+		if (c.indexOf(name) == 0)
+			return c.substring(name.length, c.length);
+	}
+	return "";
+}
+//分页/查询条件保存成cookie
+function savePageCookie(){
+	setCookie("pageNum",findnum,1)	//上一次离开页面时的分页
+	var data = $("#findForm").serialize();	//以及查询条件
+	setCookie("data",data,1)
+}
+//反序列化成数组,只取值
+function getArray(data){
+	var array = new Array();
+	var a = data.split("&");
+	for(var i = 0 ; i < a.length; i++){
+		var b = a[i].split("=");
+		for(var j = 1; j < b.length; j=j+2){
+			var c = b[j];
+			array.push(c);
+		}
+	}
+	return array;
+}
+//获得当前页码/总页码显示
+function getCurrentPageNum(){
+	$("#currentPageNum").html(findnum);	//当前页码
+	//总页数
+    var str = $("#countAll").text();
+    var allnum = parseInt(str.substring(2));
+    allnum = parseInt(allnum/7)+1;	//这里的7有问题，应该由后台传回来当前页的记录数
+	$("#allPageNum").html(allnum);
+}
+//人员信息页面数据加载
 function pageLoad(pageNum) {
-	diag();//弹出框初始化
-	var first = getCookie("first");
-	// alert(first);
-	if (first == "1")
-		$.post("remindMessage", function(data, status) {
-			if (data != '' && data != null) {
-				// alert(data)
-				$("#dialog-form").append(data);
-				$("#dialog-form").dialog("open");
-			}
-		});
-
 	lefter();
-	// alert();
-	$("#user_info").load("pageList?list=userInfo", {
-		"pageNum" : pageNum
-	});
-	$("#countAll").load("pageList?list=countAll", {
-		"pageNum" : 1
-	});// 统计数据数目
-	$("#setupField").load("SetupField?opt=listField");// 设置的字段的列表展示
+	$("#setupField").load("SetupField?opt=listField",{},function(data,status){
+		
+		
+		var opt = getUrlParam("opt")
+		if(opt == "history"){//返回记录历史状态
+			var fnum = getCookie("pageNum");
+			findnum = fnum;	//赋值给当前分页
+			findPageNum(findnum);
+			//反序列化到表单
+			var data = getCookie("data");
+			data= decodeURIComponent(data,true);
+			var array = getArray(data);
+			$("#user_name").val(array[0]);	//姓名
+			$("#user_sex").val(array[1]);	//性别
+			$("#user_work_time").val(array[2]);	
+			$("#user_origin").val(array[3]);	
+			$("#user_spouse_origin").val(array[4]);	
+			$("#user_work_address").val(array[5]);	
+			$("#user_position").val(array[6]);	
+			$("#user_position_rank").val(array[7]);
+			$("#user_class_area").val(array[8]);
+			$("#user_separated").val(array[9]);
+			$("#user_phone").val(array[10]);
+			$("#pageNum").val(array[11]);		
+			find_user('2');
+		}
+		else{
+			diag();//弹出框初始化
+			var first = getCookie("first");
+			// alert(first);
+			if (first == "1")
+				$.post("remindMessage", function(data, status) {
+					if (data != '' && data != null) {
+						// alert(data)
+						$("#dialog-form").append(data);
+						$("#dialog-form").dialog("open");
+					}
+				});
+
+			lefter();
+			// alert();
+			//用户信息
+			$("#user_info").load("pageList?list=userInfo", {
+				"pageNum" : pageNum
+			});
+			//统计总数目
+			$("#countAll").load("pageList?list=countAll", {
+				"pageNum" : 1
+			},function(data,status){
+				//当前页码显示以及总页数
+				getCurrentPageNum();
+			});
+		}
+	});// 设置的字段的列表展示
 }
 // 添加人员信息也页面数据加载
 function addUser() {
@@ -920,34 +888,6 @@ function lefter() {
 // 加载左侧页面
 function lefter2() {
 	$("#lefter").load("lefter2.html");// 加载左侧页面
-}
-// 人员信息页面分页
-function pageChange(opt, find) {
-	if (find == 'defaultfind') {
-		if (opt == 'next') {
-			num++;
-			pageLoad(num);
-		} else if (opt == 'prev') {
-			num--;
-			if (num <= 1)
-				num = 1;
-			pageLoad(num);
-		} else if (opt == 'first') {
-			pageLoad(1);
-		}
-	} else if (find == 'find') {
-		if (opt == 'next') {
-			findnum++;
-		} else if (opt == 'prev') {
-			findnum--;
-			if (findnum <= 1)
-				findnum = 1;
-		} else if (opt == 'first') {
-			findnum = 1;
-		}
-		findPageNum(findnum);
-		find_user('2');
-	}
 }
 // 查询页面pageNum
 function findPageNum(findnum) {

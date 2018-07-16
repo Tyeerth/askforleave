@@ -191,7 +191,7 @@ public class SetupField extends HttpServlet {
 			if(list!=null) {
 				content.append("<div class=\"col-md-3\">\r\n" + 
 						"                                        <label class=\"control-label \">工作单位</label>\r\n" + 
-						"                                         <select name=\"user_work_address\" class=\"form-control select2\" style=\"width: 74%\">\r\n" + 
+						"                                         <select name=\"user_work_address\" id=\"user_work_address\" class=\"form-control select2\" style=\"width: 74%\">\r\n" + 
 						"	                                        <option value=\"\"></option>\r\n"); 
 				for(Map map : list) {
 					if((Integer)map.get("flag")==0) content.append("<option value=\""+map.get("field")+"\">"+map.get("field")+"</option>");
@@ -200,7 +200,7 @@ public class SetupField extends HttpServlet {
 				
 				content.append("<div class=\"col-md-3\">\r\n" + 
 						"                                        <label class=\"control-label \">现任职务</label>\r\n" + 
-						"                                         <select name=\"user_position\" class=\"form-control select2\" style=\"width: 74%\">\r\n" + 
+						"                                         <select name=\"user_position\" id=\"user_position\" class=\"form-control select2\" style=\"width: 74%\">\r\n" + 
 						"	                                        <option value=\"\"></option>\r\n"); 
 				for(Map map : list) {
 					if((Integer)map.get("flag")==1) content.append("<option value=\""+map.get("field")+"\">"+map.get("field")+"</option>");
@@ -209,7 +209,7 @@ public class SetupField extends HttpServlet {
 				
 				content.append("<div class=\"col-md-3\">\r\n" + 
 						"                                        <label class=\"control-label \">职级</label>\r\n" + 
-						"                                         <select name=\"user_position_rank\" class=\"form-control select2\" style=\"width: 74%\">\r\n" + 
+						"                                         <select name=\"user_position_rank\" id=\"user_position_rank\" class=\"form-control select2\" style=\"width: 74%\">\r\n" + 
 						"	                                        <option value=\"\"></option>\r\n"); 
 				for(Map map : list) {
 					if((Integer)map.get("flag")==2) content.append("<option value=\""+map.get("field")+"\">"+map.get("field")+"</option>");
@@ -227,7 +227,7 @@ public class SetupField extends HttpServlet {
 			if(list!=null) {
 				content.append("<div class=\"form-group\">\r\n" + 
 						"                                        <label class=\"col-md-3 control-label \">工作单位</label>\r\n" + 
-						"                                         <div class=\"col-md-6\"><select name=\"user_work_address\" class=\"form-control\">\r\n" + 
+						"                                         <div class=\"col-md-6\"><select name=\"user_work_address\" id=\"user_work_address\" class=\"form-control\">\r\n" + 
 						"	                                        <option value=\"\"></option>\r\n"); 
 				for(Map map : list) {
 					if((Integer)map.get("flag")==0) content.append("<option value=\""+map.get("field")+"\">"+map.get("field")+"</option>");
@@ -236,7 +236,7 @@ public class SetupField extends HttpServlet {
 				
 				content.append("<div class=\"form-group\">\r\n" + 
 						"                                        <label class=\"col-md-3 control-label \">现任职务</label>\r\n" + 
-						"                                         <div class=\"col-md-6\"><select name=\"user_position\" class=\"form-control\">\r\n" + 
+						"                                         <div class=\"col-md-6\"><select name=\"user_position\" id=\"user_position\" class=\"form-control\">\r\n" + 
 						"	                                        <option value=\"\"></option>\r\n"); 
 				for(Map map : list) {
 					if((Integer)map.get("flag")==1) content.append("<option value=\""+map.get("field")+"\">"+map.get("field")+"</option>");
@@ -245,7 +245,7 @@ public class SetupField extends HttpServlet {
 				
 				content.append("<div class=\"form-group\">\r\n" + 
 						"                                        <label class=\"col-md-3 control-label \">职级</label>\r\n" + 
-						"                                         <div class=\"col-md-6\"><select name=\"user_position_rank\" class=\"form-control\">\r\n" + 
+						"                                         <div class=\"col-md-6\"><select name=\"user_position_rank\" id=\"user_position_rank\" class=\"form-control\">\r\n" + 
 						"	                                        <option value=\"\"></option>\r\n"); 
 				for(Map map : list) {
 					if((Integer)map.get("flag")==2) content.append("<option value=\""+map.get("field")+"\">"+map.get("field")+"</option>");

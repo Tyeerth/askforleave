@@ -36,24 +36,18 @@ public class findUserDao {
 		list.remove(0);//删除表字段名
 		return list;
 	}
-	//历史请假记录查询,无论有没有审核通过都会显示
+	//历史请假记录查询,显示审核通过的
 	public List<Map<String, Object>> findLeaveHistory(List listName, List listValue, HttpSession session) {
 		
-		String sql = "select *from leave_user a inner join ask_for_leave b on a.id=b.user_id where leave_passed!=0 and ";
+		String sql = "select *from leave_user a inner join ask_for_leave b on a.id=b.user_id where leave_passed=1 and "; //未通过的不算历史
 		//表单数据有值
 		String leave_start_day = "";
 		String leave_end_day = "";
 		int pageNum = 1;//分页初始化
-		int select_year=0;
-		String leave_quarterly="";
 		if(listValue != null) {
 			for(int i = 0; i < listValue.size(); i++) {
-				if(listName.get(i).equals("select_year")) {//查询的季度年份
-					select_year = Integer.parseInt((String)listValue.get(i));
-					continue;
-				}
-				if(listName.get(i).equals("leave_quarterly")) {//查询的季度
-					leave_quarterly = (String)listValue.get(i);
+				if(listName.get(i).equals("select_year")) {
+					//过滤
 					continue;
 				}
 				if(listName.get(i).equals("pageNum")) {
@@ -61,10 +55,12 @@ public class findUserDao {
 					continue;
 				}
 				if(listName.get(i).equals("leave_start_day")) {
+					sql += "timestampdiff(day,?,leave_start_day) >= 0 and timestampdiff(day,?,leave_end_day) >= 0 and ";
 					leave_start_day = (String)listValue.get(i);
 					continue;
 				}
 				if(listName.get(i).equals("leave_end_day")) {
+					sql += "timestampdiff(day,?,leave_start_day) <= 0 and timestampdiff(day,?,leave_end_day) <= 0 and ";
 					leave_end_day = (String)listValue.get(i);
 					continue;
 				}
@@ -72,109 +68,26 @@ public class findUserDao {
 			}
 		}
 		sql = sql.substring(0, sql.length()-4);
-		List<Map<String , Object>> liNum = JDBC.executeQuery(sql);
-		int leaveHistoryNum = liNum.size();//查找的历史记录数目
-		if(pageNum == 1) {//每次的第一次查询时执行
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-	        boolean b = false; boolean b2 = false;
-	        Date time1 = null;Date time2=null;
-			if(liNum != null) {
-				for(int i = 0; i < liNum.size(); i++) {
-					Map map = liNum.get(i);
-					try {
-						time1  = sdf.parse((String)map.get("leave_start_day"));
-						time2  = sdf.parse((String)map.get("leave_end_day"));
-						b = belongCalendar(time1,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-						b2 = belongCalendar(time2,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-						if(!b || !b2) {
-							liNum.remove(map);
-							i--;
-							leaveHistoryNum--;//数量-1
-							if(liNum.size()==0) break;//防止死循环
-							continue;
-						}
-						
-					}catch(Exception e) {
-						System.out.println("没有日期条件或日期范围判断出错findUserDao.java");
-					}
-				}
-			}
+		List<Map<String , Object>> list = null;
+		if(sql.contains("leave_start_day")) {
+			list = JDBC.executeQuery(sql,leave_start_day,leave_start_day,leave_end_day,leave_end_day);
 		}
-		
+		else list = JDBC.executeQuery(sql);
+		int isLeaveNum = list.size();//查找的审核记录数目
+		session.setAttribute("leaveHistoryNum", isLeaveNum);//integer,查询后的销假记录数
+		/*if(pageNum == 1) {//每次的第一次查询时执行
+		}*/
 		sql += " order by b.id desc limit "+(pageNum-1)*pageListNum+","+pageListNum;
-		List<Map<String, Object>> list = JDBC.executeQuery(sql);
-		//查询后进行日期筛选(在日期范围内)
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		        boolean b = false; boolean b2 = false;
-		        Date time1 = null;Date time2=null;
-				if(list != null) {
-					for(int i = 0; i < list.size(); i++) {
-						Map map = list.get(i);
-						try {
-							//开始日期和结束日期之间的判断
-							time1  = sdf.parse((String)map.get("leave_start_day"));
-							time2  = sdf.parse((String)map.get("leave_end_day"));
-							b = belongCalendar(time1,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-							b2 = belongCalendar(time2,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-							if(!b || !b2) {
-								list.remove(map);
-								i--;
-								continue;
-							}
-						}catch(Exception e) {
-							System.out.println("没有日期条件或日期范围判断出错findUserDao.java");
-						}
-						if(!leave_quarterly.equals("")) {
-							Date start=null; 
-							Date end=null;
-							try {
-								switch (leave_quarterly) {
-									case "第1季度":
-										start  = sdf.parse(select_year+"-01-01");
-										end  = sdf.parse(select_year+"-03-31");//经测试，不用管闰年还是平年都可以用
-										break;
-									case "第2季度":
-										start  = sdf.parse(select_year+"-04-01");
-										end  = sdf.parse(select_year+"-06-30");//经测试，不用管闰年还是平年都可以用
-										break;
-									case "第3季度":
-										start  = sdf.parse(select_year+"-07-01");
-										end  = sdf.parse(select_year+"-09-30");//经测试，不用管闰年还是平年都可以用
-										break;
-									case "第4季度":
-										start  = sdf.parse(select_year+"-10-01");
-										end  = sdf.parse(select_year+"-12-31");//经测试，不用管闰年还是平年都可以用
-										break;
-			
-									default:
-										break;
-								}
-							}
-							catch (Exception e2) {
-								System.out.println("没有季度查询或季度查询出错");
-							}
-							b = belongCalendar(time1,start,end);
-							b2 = belongCalendar(time2,start,end);
-							if(!b || !b2) {
-								list.remove(map);
-								i--;//删除元素后，从当前位置重新开始抵消影响
-								if(list.size()==0) {
-									leaveHistoryNum=0;
-									break;//防止死循环
-								}
-								leaveHistoryNum--;//数量-1
-								continue;
-							}
-						}
-					}
-				}
-		session.setAttribute("leaveHistoryNum", leaveHistoryNum);//integer,查询后的人员数
+		if(sql.contains("leave_start_day")) {
+			list = JDBC.executeQuery(sql,leave_start_day,leave_start_day,leave_end_day,leave_end_day);
+		}
+		else list = JDBC.executeQuery(sql);
 		return list;
 	}
 	//销假信息查询
 	public List<Map<String, Object>> find_cutLeave(List listName, List listValue, HttpSession session) {
 		String sql = "select * from leave_user a inner join ask_for_leave b on a.id=b.user_id where leave_passed=1 and leave_cut=0 and ";
-		
+	
 		String leave_start_day = "";
 		String leave_end_day = "";
 		int pageNum = 1;//分页初始化
@@ -185,10 +98,12 @@ public class findUserDao {
 					continue;
 				}
 				if(listName.get(i).equals("leave_start_day")) {
+					sql += "timestampdiff(day,?,leave_start_day) >= 0 and timestampdiff(day,?,leave_end_day) >= 0 and ";
 					leave_start_day = (String)listValue.get(i);
 					continue;
 				}
 				if(listName.get(i).equals("leave_end_day")) {
+					sql += "timestampdiff(day,?,leave_start_day) <= 0 and timestampdiff(day,?,leave_end_day) <= 0 and ";
 					leave_end_day = (String)listValue.get(i);
 					continue;
 				}
@@ -196,56 +111,20 @@ public class findUserDao {
 			}
 		}
 		sql = sql.substring(0, sql.length()-4);
-		List<Map<String , Object>> liNum = JDBC.executeQuery(sql);
-		int isLeaveNum = liNum.size();//查找的审核记录数目
-		if(pageNum == 1) {//每次的第一次查询时执行
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-	        boolean b = false; boolean b2 = false;
-			if(liNum != null) {
-				for(int i = 0; i < liNum.size(); i++) {
-					Map map = liNum.get(i);
-					try {
-					Date time1  = sdf.parse((String)map.get("leave_start_day"));
-					Date time2  = sdf.parse((String)map.get("leave_end_day"));
-					b = belongCalendar(time1,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-					b2 = belongCalendar(time2,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-					if(!b || !b2) {
-						liNum.remove(map);
-						i--;
-						isLeaveNum--;//数量-1
-						if(liNum.size()==0) break;//防止死循环
-						continue;
-					}
-					}catch(Exception e) {
-						System.out.println("没有日期条件或日期范围判断出错findUserDao.java");
-					}
-				}
-			}
+		List<Map<String , Object>> list = null;
+		if(sql.contains("leave_start_day")) {
+			list = JDBC.executeQuery(sql,leave_start_day,leave_start_day,leave_end_day,leave_end_day);
 		}
-		sql += " order by b.id desc limit "+(pageNum-1)*pageListNum+","+pageListNum;
-		List<Map<String, Object>> list = JDBC.executeQuery(sql);
-		//查询后进行日期筛选(在日期范围内)
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        boolean b = false; boolean b2 = false;
-		if(list != null) {
-			for(int i = 0; i < list.size(); i++) {
-				Map map = list.get(i);
-				try {
-				Date time1  = sdf.parse((String)map.get("leave_start_day"));
-				Date time2  = sdf.parse((String)map.get("leave_end_day"));
-				b = belongCalendar(time1,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-				b2 = belongCalendar(time2,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-				if(!b || !b2) {
-					list.remove(map);
-					i--;//删除后从当前位置开始不能加1(消除影响)
-					continue;
-				}
-				}catch(Exception e) {
-					System.out.println("没有日期条件或日期范围判断出错findUserDao.java");
-				}
-			}
-		}
+		else list = JDBC.executeQuery(sql);
+		int isLeaveNum = list.size();//查找的审核记录数目
 		session.setAttribute("cutLeaveNum", isLeaveNum);//integer,查询后的销假记录数
+		/*if(pageNum == 1) {//每次的第一次查询时执行
+		}*/
+		sql += " order by b.id desc limit "+(pageNum-1)*pageListNum+","+pageListNum;
+		if(sql.contains("leave_start_day")) {
+			list = JDBC.executeQuery(sql,leave_start_day,leave_start_day,leave_end_day,leave_end_day);
+		}
+		else list = JDBC.executeQuery(sql);
 		return list;
 	}
 	//请假审核信息查询
@@ -262,10 +141,12 @@ public class findUserDao {
 					continue;
 				}
 				if(listName.get(i).equals("leave_start_day")) {
+					sql += "timestampdiff(day,?,leave_start_day) >= 0 and timestampdiff(day,?,leave_end_day) >= 0 and ";
 					leave_start_day = (String)listValue.get(i);
 					continue;
 				}
 				if(listName.get(i).equals("leave_end_day")) {
+					sql += "timestampdiff(day,?,leave_start_day) <= 0 and timestampdiff(day,?,leave_end_day) <= 0 and ";
 					leave_end_day = (String)listValue.get(i);
 					continue;
 				}
@@ -273,56 +154,20 @@ public class findUserDao {
 			}
 		}
 		sql = sql.substring(0, sql.length()-4);
-		List<Map<String , Object>> liNum = JDBC.executeQuery(sql);
-		int isLeaveNum = liNum.size();//查找的审核记录数目
-		if(pageNum == 1) {//每次的第一次查询时执行
-			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-	        boolean b = false; boolean b2 = false;
-			if(liNum != null) {
-				for(int i = 0; i < liNum.size(); i++) {
-					Map map = liNum.get(i);
-					try {
-					Date time1  = sdf.parse((String)map.get("leave_start_day"));
-					Date time2  = sdf.parse((String)map.get("leave_end_day"));
-					b = belongCalendar(time1,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-					b2 = belongCalendar(time2,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-					if(!b || !b2) {
-						liNum.remove(map);
-						i--;
-						isLeaveNum--;//数量-1
-						if(liNum.size()==0) break;//防止死循环
-						continue;
-					}
-					}catch(Exception e) {
-						System.out.println("没有日期条件或日期范围判断出错findUserDao.java");
-					}
-				}
-			}
+		List<Map<String , Object>> list = null;
+		if(sql.contains("leave_start_day")) {
+			list = JDBC.executeQuery(sql,leave_start_day,leave_start_day,leave_end_day,leave_end_day);
 		}
+		else list = JDBC.executeQuery(sql);
+		int isLeaveNum = list.size();//查找的审核记录数目
+		session.setAttribute("isLeaveNum", isLeaveNum);//integer,查询后的销假记录数
+		/*if(pageNum == 1) {//每次的第一次查询时执行
+		}*/
 		sql += " order by b.id desc limit "+(pageNum-1)*pageListNum+","+pageListNum;
-		List<Map<String, Object>> list = JDBC.executeQuery(sql);
-		//查询后进行日期筛选(在日期范围内)
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        boolean b = false; boolean b2 = false;
-		if(list != null) {
-			for(int i = 0; i < list.size(); i++) {
-				Map map = list.get(i);
-				try {
-				Date time1  = sdf.parse((String)map.get("leave_start_day"));
-				Date time2  = sdf.parse((String)map.get("leave_end_day"));
-				b = belongCalendar(time1,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-				b2 = belongCalendar(time2,sdf.parse(leave_start_day),sdf.parse(leave_end_day));
-				if(!b || !b2) {
-					list.remove(map);
-					i--;//删除后从当前位置开始不能加1(消除影响)
-					continue;
-				}
-				}catch(Exception e) {
-					System.out.println("没有日期条件或日期范围判断出错findUserDao.java");
-				}
-			}
+		if(sql.contains("leave_start_day")) {
+			list = JDBC.executeQuery(sql,leave_start_day,leave_start_day,leave_end_day,leave_end_day);
 		}
-		session.setAttribute("isLeaveNum", isLeaveNum);//integer,查询后的人员数
+		else list = JDBC.executeQuery(sql);
 		return list;
 	}
 	//判断日期是否在范围之内，包含边界

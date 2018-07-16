@@ -49,7 +49,7 @@ public class remindMessage extends HttpServlet {
 			}
 			content.append("</table>");
 			response.getWriter().write(content.toString());
-			System.out.println(content);
+			//System.out.println(content);
 		}
 		
 	}
