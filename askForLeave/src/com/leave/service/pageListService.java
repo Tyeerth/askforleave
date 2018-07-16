@@ -463,8 +463,6 @@ public class pageListService {
 					}
 			}
 		}
-		
-		
 		//修改销假记录
 		pLD.updatehistoryLeave(id,leave_end_day,leave_cut_remark);
 		return "";

@@ -13980,6 +13980,7 @@ Portlets
 	padding: 0px !important;
 }
 
+
 .portlet.box>.portlet-title {
 	border-bottom: 0;
 	padding: 0 10px;
@@ -35848,4 +35849,8 @@ Color library demo
 	.mt-content-row .mt-content-col-fixed .mt-content-sidebar {
 		margin-left: 0;
 	}
+}
+
+.portlet>.portlet-body.blue, .portlet.blue {
+    background-color: #ffffff;
 }

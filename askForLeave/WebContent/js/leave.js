@@ -198,7 +198,16 @@ function optionUser() {
 	}, function(data) {
 		$("#getoneUser").html(data);
 	});
+	//个人请假记录查看
 	$("#leavedInfo").load("getUserInfo?opt=idLeavedInfo", {
+		"id" : id
+	});
+	leavedInfoHistory(id);
+}
+//展示个人历史请假数据
+function leavedInfoHistory(id){
+	//个人请假历史记录展示
+	$("#leavedInfoHistory").load("getUserInfo?opt=idleavedInfoHistory", {
 		"id" : id
 	});
 }
@@ -215,12 +224,17 @@ function name_event() {
 		}, function(data) {
 			$("#getoneUser").html(data);
 
-		});
+		}); 
+		//姓名唯一
 		$.post("getUserInfo?opt=nameLeavedInfo", {
 			"user_name" : name
 		}, function(data) {
 			$("#leavedInfo").html(data);
-
+			
+			//获得id
+			var id = $("#selectUserId").find("option").eq(1).val();
+			//个人历史请假记录
+			leavedInfoHistory(id);
 		});
 		// 这样竟然不行...为啥啊，上面optionUser()中直接load就行...
 		// $("#leavedInfo").load("getUserInfo?opt=nameLeavedInfo",{"user_name":user_name});
@@ -460,18 +474,18 @@ function find_user(again) {
 		findnum = 1;
 		num = 1;
 		findPageNum(1);
-		
-		$("#countAll").load("pageList?list=countAll2", {
-			"pageNum" : 1
-		},function(data,status){
-			getCurrentPageNum();	//当前页
-		});
 	}
-
+	
 	var data = $("#findForm").serialize();
 	// alert("$"+data);
 	$.post("findUser?opt=userInfo",data,function(data) {
 						$("#user_info").html(data);
+						
+						$("#countAll").load("pageList?list=countAll2", {
+							"pageNum" : 1
+						},function(data,status){
+							getCurrentPageNum();	//当前页
+						});
 					});
 }
 // 导出查询出来的信息成excel表
@@ -617,9 +631,10 @@ function cutLeave(ask_for_leave_id) {
 		"pageNum" : 1
 	}, function(data, status) {
 		// alert("测试");
-		location.reload();
+		//location.reload();
 		// 再次查询，首页查询刷新ajax
 		// cuthistoryLeave(1);
+		find_cutLeave('2')
 	});
 }
 // 销假页面分页
@@ -815,15 +830,14 @@ function getCurrentPageNum(){
 	//总页数
     var str = $("#countAll").text();
     var allnum = parseInt(str.substring(2));
-    allnum = parseInt(allnum/7)+1;	//这里的7有问题，应该由后台传回来当前页的记录数
+    allnum = Math.ceil(allnum/7);	//这里的7有问题，应该由后台传回来当前页的记录数
 	$("#allPageNum").html(allnum);
 }
+
 //人员信息页面数据加载
 function pageLoad(pageNum) {
 	lefter();
 	$("#setupField").load("SetupField?opt=listField",{},function(data,status){
-		
-		
 		var opt = getUrlParam("opt")
 		if(opt == "history"){//返回记录历史状态
 			var fnum = getCookie("pageNum");

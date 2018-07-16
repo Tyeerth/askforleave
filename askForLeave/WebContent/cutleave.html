@@ -5,10 +5,6 @@
 
 <title>谢通门县请销假管理系统</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1" name="viewport">
-<meta
-	content="Preview page of Metronic Admin Theme #4 for responsive bootstrap table demos"
-	name="description">
 
 <link href="./resources/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
@@ -39,10 +35,6 @@
 	id="style_components" type="text/css">
 <link href="./resources/plugins.min.css" rel="stylesheet"
 	type="text/css">
-
-<link rel="shortcut icon"
-	href="file:///C:/Users/lu/Desktop/qingjiaxiangmu/HTML/favicon.ico">
-
 <link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
 <link href="./resources/default.min.css" rel="stylesheet"
 	type="text/css" id="style_color">
@@ -51,45 +43,29 @@
 <script src="js/leave.js"></script>
 <script src="js/jquery.min.js"></script>
 </head>
-
-
 <body
 	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
 	onload="javascript:cuthistoryLeave(1);">
-
 	<div class="page-header navbar navbar-fixed-top">
 
 		<div class="page-header-inner ">
 			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
-
 		</div>
-
 	</div>
-
 	<div class="clearfix"></div>
-
 	<div class="page-container">
-
 		<div class="page-sidebar-wrapper" id="lefter">
 			<!-- lefter.html -->
 		</div>
-
 		<div class="page-content-wrapper">
-
 			<div class="page-content" style="min-height: 630px;">
-
-
 				<div class="row">
 					<div class="col-md-12">
-
 						<div class="page-head">
-
 							<div class="page-title">
 								<h1>销假管理</h1>
 							</div>
-
 						</div>
-
 						<div class="portlet box blue">
 							<div class="portlet-title">
 								<div class="caption">
@@ -112,14 +88,17 @@
 													name="user_work_address" class="form-control select2"
 													style="width: 74%" id="resourceType" alt="int">
 											</div>
-											<div class="col-md-3">
+											<!-- <div class="col-md-3">
 												<label class="control-label ">开始时间</label> <input
 													name="leave_start_day" type="date" class="form-control "
 													style="width: 74%">
-											</div>
+											</div> -->
 											<div class="col-md-3">
-												<label class="control-label ">结束时间</label> <input
+												<label class="control-label ">应到岗日期</label> <input
 													name="leave_end_day" type="date" class="form-control "
+													style="width: 74%">
+													<input
+													name="leave_end_day2" type="date" class="form-control "
 													style="width: 74%">
 											</div>
 										</div>
@@ -158,7 +137,6 @@
 								<div class="table-responsive" id="allUserData">
 									<div class="col-md-12" id="cutLeave">
 										<!-- body onload -->
-
 
 									</div>
 									<div class="col-md-7 col-sm-7">

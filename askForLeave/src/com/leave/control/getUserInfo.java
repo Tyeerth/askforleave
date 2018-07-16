@@ -55,6 +55,13 @@ public class getUserInfo extends HttpServlet {
 			out.write(content);
 			out.close();
 		}
+		//个人请假历史查看
+		else if(opt.equals("idleavedInfoHistory")) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			String content = gus.idleavedInfoHistory(id);
+			out.write(content);
+			out.close();
+		}
 		else if(opt.equals("nameLeavedInfo")) {
 			String user_name = request.getParameter("user_name");
 			String content = gus.nameLeavedInfo(user_name);

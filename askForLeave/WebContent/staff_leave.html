@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="ie8 no-js">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>谢通门县请销假管理系统</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta content="width=device-width, initial-scale=1" name="viewport">
-<meta
-	content="Preview page of Metronic Admin Theme #4 for statistics, charts, recent events and reports"
-	name="description">
-<meta content="" name="author">
 <link href="./resources/css" rel="stylesheet" type="text/css">
 <link href="./resources/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
@@ -54,44 +48,30 @@
 		<div class="page-header-inner ">
 			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
 		</div>
-
 	</div>
-
 	<div class="clearfix"></div>
-
 	<div class="page-container">
-
 		<div class="page-sidebar-wrapper" id="lefter">
 			<!-- lefter.html -->
 		</div>
-
 		<div class="page-content-wrapper">
-
 			<div class="page-content" style="min-height: 630px;">
-
 				<div class="page-head">
-
 					<div class="page-title">
 						<h1>请假</h1>
 					</div>
-
 				</div>
-
-
 				<div class="portlet box blue col-md-8">
 					<div class="portlet-title">
 						<div class="caption">
 							<i></i>请假
 						</div>
 					</div>
-
 					<div class="portlet-body form" id="getoneUser">
 						<!-- BEGIN FORM-->
 						<form method="post" onsubmit="get_userInfo()"
 							class="form-horizontal">
-
 							<div class="form-body" id="form-body">
-
 								<div class="form-group">
 									<label class="col-md-3 control-label">姓名</label>
 									<div class="col-md-4">
@@ -103,10 +83,8 @@
 											<option value=""></option>
 										</select>
 									</div>
-
 								</div>
 								<div class="form-group">
-
 									<label class="col-md-3 control-label">联系电话</label>
 									<div class="col-md-8">
 										<input name="user_phone" type="text" class="form-control"
@@ -218,6 +196,19 @@
 						<div class="form-body" id="leavedInfo"
 							style="background-color: white;">
 							<!-- 请假数据统计js -->
+						</div>
+					</div>
+				</div>
+				<div class="portlet box blue col-md-4">
+					<div class="portlet-title">
+						<div class="caption">
+							<i></i>个人请假历史记录
+						</div>
+					</div>
+					<div class="portlet-body form">
+						<div class="form-body" id="leavedInfoHistory"
+							style="background-color: white;">
+							<!-- 个人请假历史记录js -->
 						</div>
 					</div>
 				</div>

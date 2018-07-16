@@ -87,8 +87,8 @@ public class findUserDao {
 	//销假信息查询
 	public List<Map<String, Object>> find_cutLeave(List listName, List listValue, HttpSession session) {
 		String sql = "select * from leave_user a inner join ask_for_leave b on a.id=b.user_id where leave_passed=1 and leave_cut=0 and ";
-	
-		String leave_start_day = "";
+
+		String leave_end_day2 = "";
 		String leave_end_day = "";
 		int pageNum = 1;//分页初始化
 		if(listValue != null) {
@@ -97,14 +97,14 @@ public class findUserDao {
 					pageNum = Integer.parseInt((String)listValue.get(i));//分页
 					continue;
 				}
-				if(listName.get(i).equals("leave_start_day")) {
-					sql += "timestampdiff(day,?,leave_start_day) >= 0 and timestampdiff(day,?,leave_end_day) >= 0 and ";
-					leave_start_day = (String)listValue.get(i);
+				if(listName.get(i).equals("leave_end_day")) {
+					sql += "timestampdiff(day,?,leave_end_day) >= 0 and ";
+					leave_end_day = (String)listValue.get(i);
 					continue;
 				}
-				if(listName.get(i).equals("leave_end_day")) {
-					sql += "timestampdiff(day,?,leave_start_day) <= 0 and timestampdiff(day,?,leave_end_day) <= 0 and ";
-					leave_end_day = (String)listValue.get(i);
+				if(listName.get(i).equals("leave_end_day2")) {
+					sql += "timestampdiff(day,?,leave_end_day) <= 0 and ";
+					leave_end_day2 = (String)listValue.get(i);
 					continue;
 				}
 				sql += listName.get(i)+" like '%"+listValue.get(i)+"%' and ";
@@ -112,8 +112,8 @@ public class findUserDao {
 		}
 		sql = sql.substring(0, sql.length()-4);
 		List<Map<String , Object>> list = null;
-		if(sql.contains("leave_start_day")) {
-			list = JDBC.executeQuery(sql,leave_start_day,leave_start_day,leave_end_day,leave_end_day);
+		if(sql.contains("leave_end_day")) {
+			list = JDBC.executeQuery(sql,leave_end_day,leave_end_day2);
 		}
 		else list = JDBC.executeQuery(sql);
 		int isLeaveNum = list.size();//查找的审核记录数目
@@ -121,8 +121,8 @@ public class findUserDao {
 		/*if(pageNum == 1) {//每次的第一次查询时执行
 		}*/
 		sql += " order by b.id desc limit "+(pageNum-1)*pageListNum+","+pageListNum;
-		if(sql.contains("leave_start_day")) {
-			list = JDBC.executeQuery(sql,leave_start_day,leave_start_day,leave_end_day,leave_end_day);
+		if(sql.contains("leave_end_day")) {
+			list = JDBC.executeQuery(sql,leave_end_day,leave_end_day2);
 		}
 		else list = JDBC.executeQuery(sql);
 		return list;
@@ -267,6 +267,14 @@ public class findUserDao {
 		session.setAttribute("temporaryHistoryNum", isLeaveNum);//integer,查询后的人员数
 		return list;
 	}   
+	//根据id显示相应用户的历史请假信息
+	public static List<Map<String, Object>> idleavedInfoHistory(int id){
+		String sql = "select *from leave_user a inner join ask_for_leave b on a.id=b.user_id where "
+				+ "leave_passed=1 and a.id=? order by b.id desc"; //未通过的不算历史
+		List<Map<String , Object>> list = JDBC.executeQuery(sql,id);
+		return list;
+	}
+	
 	public static void main(String[] args) throws ParseException {
 		 //打印测试
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.leave.dao.findUserDao;
 import com.leave.dao.getUserInfoDao;
 import com.leave.dao.printInfoDao;
 import com.leave.util.DateL;
@@ -770,7 +771,35 @@ public class getUserInfoService {
 		}
 		return content.toString();
 	}
-
+	findUserDao  fDao = new findUserDao();
+	//个人请假历史数据展示
+	public String idleavedInfoHistory(int id) {
+		List<Map<String, Object>> list = fDao.idleavedInfoHistory(id);
+		
+		StringBuffer  pageContent = new StringBuffer("");
+		pageContent.append("<table class=\"table table-bordered\" id=\"sample_1\">	<thead>\r\n" + 
+				"                                        <tr>\r\n" + 
+				"                                            <th> 请假类型</th>\r\n" + 
+				"                                            <th> 请假天数</th>\r\n" + 
+				"                                            <th> 开始日期</th>\r\n" + 
+				"                                            <th> 结束日期</th>\r\n" + 
+				"                                        </tr>\r\n" + 
+				"                                        </thead>");
+		
+		//添加数据
+		if(list != null) {
+			for(Map map : list) {
+			pageContent.append("<tbody>\r\n" + 
+					"                                        <td>"+map.get("leave_kind")+"</td>\r\n" + 
+					"                                        <td>"+map.get("leave_day")+"</td>\r\n" + 
+					"                                        <td>"+map.get("leave_start_day")+"</td>\r\n" + 
+					"                                        <td>"+map.get("leave_end_day")+"</td>\r\n" + 
+					"                                        </tbody>");
+			}
+		}
+		pageContent.append("</table>");
+		return pageContent.toString();
+	}
 	public String nameLeavedInfo(String user_name) {
 		List<Map<String, Object>> list = gDao.getUserInfo(user_name);
 		System.out.println(list);
