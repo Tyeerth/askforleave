@@ -41,9 +41,9 @@
 
 <script src="js/leave.js"></script>
 <script src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
 </head>
-
-
 <body
 	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
 	onload="javascript:historyLeave(1);">
@@ -54,33 +54,21 @@
 			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
 
 		</div>
-
 	</div>
-
 	<div class="clearfix"></div>
-
 	<div class="page-container">
-
 		<div class="page-sidebar-wrapper" id="lefter">
 			<!-- lefter.html -->
 		</div>
-
 		<div class="page-content-wrapper">
-
 			<div class="page-content" style="min-height: 630px;">
-
-
 				<div class="row">
 					<div class="col-md-12">
-
 						<div class="page-head">
-
 							<div class="page-title">
 								<h1>历史请假记录</h1>
 							</div>
-
 						</div>
-
 						<div class="portlet box blue">
 							<div class="portlet-title">
 								<div class="caption">
@@ -88,7 +76,6 @@
 								</div>
 							</div>
 							<div class="portlet-body" id="portlet-body">
-
 								<div class="row">
 									<form method="post" onsubmit="return find_history()"
 										id="find_history">
@@ -116,7 +103,6 @@
 														style="width: 74%">
 														<option value=""></option>
 													</select>
-
 												</div>
 												<div class="col-md-3">
 
@@ -154,8 +140,6 @@
 													name="leave_end_day" type="date" class="form-control "
 													style="width: 74%">
 											</div>
-
-
 										</div>
 										<div id="changePageNum">
 											<input type="hidden" name="pageNum" value="1">
@@ -171,13 +155,6 @@
 													style="float: left; margin-right: 5px; margin-top: 7px;">按季度导出</label>
 												<input id="select_year" name="select_year" type="text"
 													value="2018" class="form-control " style="width: 74%">
-												<!-- <select name="leave_quarterly" class="form-control" style="width: 74%">
-                                          <option value=""></option>
-                                          <option value="第1季度">第1季度（1-3月）</option>
-                                          <option value="第2季度">第2季度（4-5月）</option>
-                                          <option value="第3季度">第3季度（7-9月）</option>
-                                          <option value="第4季度">第4季度（10-12月）</option>
-                                       </select> -->
 											</div>
 											<input type="button" value="第1季度"
 												onclick="find_quarterly('第1季度')" class="btn blue" /> <input
@@ -190,21 +167,13 @@
 										</div>
 									</form>
 								</div>
-
-
-
 							</div>
-
 						</div>
-
-
-
 						<div class="portlet box blue">
 							<div class="portlet-title">
 								<div class="caption">
 									<i></i> 历史请假档案
 								</div>
-
 
 							</div>
 							<div class="portlet-body">
@@ -214,7 +183,7 @@
 
 
 									</div>
-									<div class="col-md-7 col-sm-7">
+									<div class="col-md-12 col-sm-12">
 										<div class="dataTables_paginate paging_bootstrap_full_number"
 											id="sample_1_paginate">
 											<ul class="pagination" style="visibility: visible;"
@@ -238,6 +207,11 @@
 												<li class="next pagination">
 														<a>
 															当前第<strong id="currentPageNum">x</strong>页/共<strong id="allPageNum">x</strong>页 
+														</a>
+													</li>
+													<li class="next pagination">
+														<a>
+															跳转到第<input type="text" id="jumpPage" onkeydown="jump_event('history_leave')">页
 														</a>
 													</li>
 											</ul>

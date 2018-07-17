@@ -223,7 +223,6 @@ function name_event() {
 			"user_name" : name
 		}, function(data) {
 			$("#getoneUser").html(data);
-
 		}); 
 		//姓名唯一
 		$.post("getUserInfo?opt=nameLeavedInfo", {
@@ -238,6 +237,35 @@ function name_event() {
 		});
 		// 这样竟然不行...为啥啊，上面optionUser()中直接load就行...
 		// $("#leavedInfo").load("getUserInfo?opt=nameLeavedInfo",{"user_name":user_name});
+	}
+}
+function jump_event(opt){
+	// 回车键
+	var event = arguments.callee.caller.arguments[0] || window.event;
+	if (event.keyCode == 13) {// 判断是否按了回车，enter的keycode代码是13
+		var pagenum = document.getElementById("jumpPage").value;// 调半天竟然是少了.value!
+		//跳转页面改变页码
+		findnum = pagenum;
+		switch(opt){
+			case "user_info": 
+				pageChange('','')
+				break;
+			case "isleave": 
+				pageChange2('','')
+				break;
+			case "cutleave": 
+				pageChange5('','')
+				break;
+			case "history_leave": 
+				pageChange3('','')
+				break;
+			case "temporary": 
+				pageChange4('','')
+				break;
+		}
+		
+		//find_user('2')
+		//window.location.href = 'user_information.html?opt=history';
 	}
 }
 // 打印页面数据加载2
@@ -301,7 +329,6 @@ function get_personKind(id) {
 		}
 	});
 }
-
 // 人员相关领导信息录入
 function get_userInfo2(opt) {
 	// 领导id
@@ -331,7 +358,6 @@ function get_userInfo2(opt) {
 		});
 	}
 }
-// 请假
 // 请假操作
 function get_userInfo(opt) {
 	var data = $("#askForLeave").serialize();
@@ -475,7 +501,6 @@ function find_user(again) {
 		num = 1;
 		findPageNum(1);
 	}
-	
 	var data = $("#findForm").serialize();
 	// alert("$"+data);
 	$.post("findUser?opt=userInfo",data,function(data) {
@@ -669,7 +694,7 @@ function pageChange4(opt, find) {
 		findTemporaryHistoryLeave('2');
 		getCurrentPageNum();	//当前页
 }
-// 请假审批页面分页
+// 历史请假页面分页
 function pageChange3(opt, find) {
 		if (opt == 'next') {
 			findnum++;
@@ -690,7 +715,8 @@ function pageChange2(opt, find) {
 			findnum++;
 		} else if (opt == 'prev') {
 			findnum--;
-			find_isleave();
+			if (findnum <= 1)
+				findnum = 1;
 		} else if (opt == 'first') {
 			findnum = 1;
 		}
@@ -700,7 +726,7 @@ function pageChange2(opt, find) {
 }
 //人员信息页面分页
 function pageChange(opt, find) {
-		getCurrentPageNum();	//当前页码
+		//getCurrentPageNum();	//当前页码
 		if (opt == 'next') {
 			findnum++;
 		} else if (opt == 'prev') {
@@ -805,7 +831,7 @@ function getCookie(cname) {
 	}
 	return "";
 }
-//分页/查询条件保存成cookie
+//分页/查询条件保存成cookie,页面onunload()事件触发
 function savePageCookie(){
 	setCookie("pageNum",findnum,1)	//上一次离开页面时的分页
 	var data = $("#findForm").serialize();	//以及查询条件

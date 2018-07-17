@@ -1,0 +1,55 @@
+﻿<!DOCTYPE>
+<html xmlns=""><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>谢通门县请销假管理系统</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/animate.css">
+
+<!--必要样式-->
+<link rel="stylesheet" href="css/style.css" media="screen" type="text/css">
+<script src="js/jquery.min.js"></script>
+<script src="js/js.cookie.js"></script>
+<script src="js/login.js"></script>
+</head>
+
+<body>
+<div class="update-info animated bounceInLeft">
+  <div class="update-title">
+    <h3>更新内容</h3>
+    <div class="line"></div>
+    <p>更新时间：</p>
+    <p class="update-time">2018-07-17 8:00 a.m</p>
+    <!-- <p class="close">X</p> -->
+  </div>
+  <div class="update-body">
+    <ul>
+       <li>优化人员信息管理页面和销假页面表格数据分页操作后，返回无法回到原位置的问题</li>
+      <li>增加请假操作页面个人请假历史信息展示</li>
+      <li>增加所有页面的表格分页数字显示，以及总页数统计</li>
+      <li>增加所有表格页面分页输入数字跳转对应页面功能</li>
+      <li>优化所有页面查询条件包含日期后结果每页记录数不相等问题</li>
+      <li>修改人员信息页面按钮优化为返回首页功能</li>
+      <li>历史请假记录页面不展示请假审核未通过记录</li>
+      <li>请假操作页面样式优化</li>
+      <li>销假管理页面查询条件的修改优化</li>
+      <li>首页增加更新日志展示</li>
+    </ul>
+  </div>
+</div>
+<section class="login-form-wrap">
+  <h1>谢通门县请销假管理系统</h1>
+  <form method="post" class="login-form" id="userlogin">
+	  <label><input required="" placeholder="用户名" name="username" id="username" type="text"></label>
+	  <label><input name="userpasswd" id="userpasswd" required="" placeholder="登录密码" type="password"></label>
+	  <input value="登录" type="button" onclick="return userlogin()">
+  </form>
+  <div class="copyright">
+    <p>技术支持：<a>陈天飞 朱世财 鹿成</a></p>
+    </div>
+</section>
+
+
+
+</body></html>

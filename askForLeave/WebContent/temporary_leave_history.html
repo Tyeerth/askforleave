@@ -41,33 +41,24 @@
 
 <script src="js/leave.js"></script>
 <script src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body
 	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
 	onload="javascript:temporaryHistoryLeave(1);">
-
 	<div class="page-header navbar navbar-fixed-top">
-
 		<div class="page-header-inner ">
 			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
-
 		</div>
-
 	</div>
-
 	<div class="clearfix"></div>
-
 	<div class="page-container">
-
 		<div class="page-sidebar-wrapper" id="lefter">
 			<!-- lefter.html -->
 		</div>
-
 		<div class="page-content-wrapper">
-
 			<div class="page-content" style="min-height: 630px;">
-
-
 				<div class="row">
 					<div class="col-md-12">
 						<div class="page-head">
@@ -75,9 +66,7 @@
 							<div class="page-title">
 								<h1>临时请假历史记录</h1>
 							</div>
-
 						</div>
-
 						<div class="portlet box blue">
 							<div class="portlet-title">
 								<div class="caption">
@@ -85,7 +74,6 @@
 								</div>
 							</div>
 							<div class="portlet-body" id="portlet-body">
-
 								<div class="row">
 									<form method="post" id="findTemporaryHistoryLeave">
 										<div class="form-group col-md-12">
@@ -124,31 +112,21 @@
 										</div>
 									</form>
 								</div>
-
-
-
 							</div>
-
 						</div>
-
-
-
 						<div class="portlet box blue">
 							<div class="portlet-title">
 								<div class="caption">
 									<i></i> 临时历史请假记录
 								</div>
-
-
 							</div>
 							<div class="portlet-body">
 								<div class="table-responsive" id="allUserData">
 									<div class="col-md-12" id="temporary_Leave">
 										<!-- body onload -->
 
-
 									</div>
-									<div class="col-md-7 col-sm-7">
+									<div class="col-md-12 col-sm-12">
 										<div class="dataTables_paginate paging_bootstrap_full_number"
 											id="sample_1_paginate">
 											<ul class="pagination" style="visibility: visible;"
@@ -170,6 +148,11 @@
 												<li class="next pagination">
 														<a>
 															当前第<strong id="currentPageNum">x</strong>页/共<strong id="allPageNum">x</strong>页 
+														</a>
+													</li>
+													<li class="next pagination">
+														<a>
+															跳转到第<input type="text" id="jumpPage" onkeydown="jump_event('temporary')">页
 														</a>
 													</li>
 											</ul>

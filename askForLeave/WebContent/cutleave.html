@@ -4,7 +4,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>谢通门县请销假管理系统</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <link href="./resources/font-awesome.min.css" rel="stylesheet"
 	type="text/css">
@@ -42,6 +41,8 @@
 
 <script src="js/leave.js"></script>
 <script src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body
 	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
@@ -139,7 +140,7 @@
 										<!-- body onload -->
 
 									</div>
-									<div class="col-md-7 col-sm-7">
+									<div class="col-md-12 col-sm-12">
 										<div class="dataTables_paginate paging_bootstrap_full_number"
 											id="sample_1_paginate">
 											<ul class="pagination" style="visibility: visible;"
@@ -161,6 +162,11 @@
 												<li class="next pagination">
 														<a>
 															当前第<strong id="currentPageNum">x</strong>页/共<strong id="allPageNum">x</strong>页 
+														</a>
+													</li>
+												<li class="next pagination">
+														<a>
+															跳转到第<input type="text" id="jumpPage" onkeydown="jump_event('cutleave')">页
 														</a>
 													</li>
 											</ul>
