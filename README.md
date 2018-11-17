@@ -7,7 +7,7 @@
 >
 > 数据库等配置文件：WEB-INF下db.properties(字段含义见附录)
 
-[![img](https://github.com/Dreamlu/askforleave/raw/master/askForLeave/p1.png)](https://github.com/Dreamlu/askforleave/blob/master/askForLeave/p1.png)
+[![img](https://github.com/Dreamlu/askforleave/blob/master/p1.png)](https://github.com/Dreamlu/askforleave/blob/master/askForLeave/p1.png)
 
 特点：
 
