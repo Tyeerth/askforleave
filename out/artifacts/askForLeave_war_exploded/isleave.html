@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>谢通门县请销假管理系统</title>
+<meta content="" name="author">
+
+<link href="./resources/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/css" rel="stylesheet" type="text/css">
+<link href="./resources/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/simple-line-icons.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-switch.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/daterangepicker.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/morris.css" rel="stylesheet" type="text/css">
+<link href="./resources/fullcalendar.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/jqvmap.css" rel="stylesheet" type="text/css">
+<link href="./resources/bootstrap-modal-bs3patch.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-modal.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/style.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/bootstrap-datepicker3.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/daterangepicker.min.css" rel="stylesheet"
+	type="text/css">
+
+<link href="./resources/components.css" rel="stylesheet"
+	id="style_components" type="text/css">
+<link href="./resources/plugins.min.css" rel="stylesheet"
+	type="text/css">
+
+<link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/default.min.css" rel="stylesheet"
+	type="text/css" id="style_color">
+<link href="./resources/custom.min.css" rel="stylesheet" type="text/css">
+
+<script src="js/leave.js"></script>
+<script src="js/jquery.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body
+	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
+	onload="javascript:isleaveLoad(1);">
+
+	<div class="page-header navbar navbar-fixed-top">
+
+		<div class="page-header-inner ">
+			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
+		</div>
+
+	</div>
+
+	<div class="clearfix"></div>
+
+	<div class="page-container">
+
+		<div class="page-sidebar-wrapper" id="lefter">
+			<!-- lefter.html -->
+		</div>
+
+		<div class="page-content-wrapper">
+
+			<div class="page-content" style="min-height: 630px;">
+
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="page-head">
+
+							<div class="page-title">
+								<h1>请假审批</h1>
+							</div>
+
+						</div>
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i></i>审批查询
+								</div>
+							</div>
+							<div class="portlet-body" id="portlet-body">
+
+								<div class="row">
+									<form method="post" onsubmit="return find_isleave()"
+										id="find_isleave">
+										<div class="form-group col-md-12">
+
+											<div class="col-md-3">
+												<label class=" control-label ">姓名</label> <input
+													name="user_name" class="form-control " style="width: 74%">
+											</div>
+											<div class="col-md-3">
+												<label class="control-label ">单位</label> <input
+													name="user_work_address" class="form-control select2"
+													style="width: 74%" id="resourceType" alt="int">
+											</div>
+											<div class="col-md-3">
+												<label class="control-label ">开始时间</label> <input
+													name="leave_start_day" type="date" class="form-control "
+													style="width: 74%">
+											</div>
+											<div class="col-md-3">
+												<label class="control-label ">结束时间</label> <input
+													name="leave_end_day" type="date" class="form-control "
+													style="width: 74%">
+											</div>
+										</div>
+										<div id="changePageNum">
+											<input type="hidden" name="pageNum" value="1">
+										</div>
+										<div class="col-md-12">
+											<button type="reset" class="btn blue "
+												style="float: right; margin-right: 25px"
+												onclick="user_reset()">重置查询</button>
+											<a class="btn blue" role="button" onclick="find_isleave('1')"
+												style="float: right; margin-right: 10px">查询</a>
+
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i></i> 请假审批
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-responsive" id="allUserData">
+									<div class="col-md-12" id="leave_passed">
+
+										<!--  body onload -->
+
+									</div>
+									<div class="col-md-12 col-sm-12">
+										<div class="dataTables_paginate paging_bootstrap_full_number"
+											id="sample_1_paginate">
+											<ul class="pagination" style="visibility: visible;">
+												<li class="prev "><a
+													onclick="leavePasswdALL('isLeave')" title="First"
+													id="firstpage"> 批量同意 </a></li>
+											</ul>
+											<ul class="pagination" style="visibility: visible;"
+												id="findPageNum">
+												<li class="prev "><a
+													onclick="pageChange2('first','defaultfind')" title="First"
+													id="firstpage"> 首页 </a></li>
+												<li class="prev"><a
+													onclick="pageChange2('prev','defaultfind')" title="Prev"
+													id="prepage"> 上一页 </a></li>
+												<li class="next pagination"><a
+													onclick="pageChange2('next','defaultfind')" title="Next"
+													id="nextpage"> 下一页 </a></li>
+											</ul>
+											<ul class="pagination" style="visibility: visible;">
+												<li class="next pagination" id="countAll"><a> 共x条数据
+												</a></li>
+												<li class="next pagination">
+														<a>
+															当前第<strong id="currentPageNum">x</strong>页/共<strong id="allPageNum">x</strong>页 
+														</a>
+												</li>
+												<li class="next pagination">
+														<a>
+															跳转到第<input type="text" id="jumpPage" onkeydown="jump_event('isleave')">页
+														</a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+	<script src="./resources/respond.min.js.下载"></script>
+	<script src="./resources/excanvas.min.js.下载"></script>
+	<script src="./resources/ie8.fix.min.js.下载"></script>
+	<script src="./resources/jquery.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/js.cookie.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/jquery.slimscroll.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/jquery.blockui.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-switch.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/daterangepicker.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/morris.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/app.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.bootstrap.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/table-datatables-managed.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-datepicker.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/layout.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/demo.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/quick-sidebar.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/quick-nav.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/components-date-time-pickers.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.bootstrap.js.下载"
+		type="text/javascript"></script>
+
+
+
+</body>
+</html>

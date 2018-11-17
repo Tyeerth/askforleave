@@ -1,0 +1,116 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+.wrap {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.wrap table {
+	border: 1px #000000 solid;
+	border-collapse: collapse;
+}
+
+.wrap td {
+	border: 1px solid #000000;
+	padding: 8px;
+	height: 20px;
+	width: 100px;
+	text-align: center;
+}
+
+.tip {
+	padding: 5px 0;
+}
+
+.sign-name {
+	text-align: right;
+	margin: 20px 80px 0 0;
+}
+
+.date {
+	text-align: right;
+	margin: 2px 60px 10px 0;
+}
+
+#date1 {
+	font-size: 14px;
+	text-align: left;
+	padding: 0 10px;
+	line-height: 14px;
+	width: 140px;
+}
+
+h1 {
+	text-align: center;
+	margin: 15px 0;
+}
+
+.no {
+	text-align: right;
+	font-weight: bold;
+	margin-right: 70px;
+	margin-bottom: 5px;
+}
+
+.no1 {
+	text-align: right;
+	font-size: 15px;
+	margin-right: 80px;
+}
+
+#responsive {
+	text-align: left;
+	
+}
+
+.title1 {
+	margin: 5px 0;
+	text-align: center;
+	font-size: 25px;
+}
+
+#responsive p {
+	line-height: 20px;
+}
+
+.inscribe {
+	text-align: right;
+	margin-right: 20px;;
+}
+
+.date2 {
+	text-align: right;
+	margin-bottom: 0;
+	margin-right: 40px;
+}
+
+button {
+	width: 100px;
+	height: 30px;
+	float: right;
+	margin-right: 50px;
+	font-size: 16px;
+	margin-bottom: 20px;
+	color: #ffffff;
+	background-color: deepskyblue;
+	border: none;
+	border-radius: 5px;
+}
+
+.title {
+	margin-bottom: 10px;
+	text-align: center;
+	font-size: 35px;
+}
+
+.tip1 {
+	margin: 0;
+}
+
+.table-wrap {
+	height: 945px;
+	background-color:red;
+}

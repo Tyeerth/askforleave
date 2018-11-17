@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" class="ie8 no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>谢通门县请销假管理系统</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<meta
+	content="Preview page of Metronic Admin Theme #4 for responsive bootstrap table demos"
+	name="description">
+<meta content="" name="author">
+
+<link href="./resources/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/css" rel="stylesheet" type="text/css">
+<link href="./resources/font-awesome.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/simple-line-icons.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-switch.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/daterangepicker.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/morris.css" rel="stylesheet" type="text/css">
+<link href="./resources/fullcalendar.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/jqvmap.css" rel="stylesheet" type="text/css">
+<link href="./resources/bootstrap-modal-bs3patch.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/bootstrap-modal.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/style.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/bootstrap-datepicker3.min.css" rel="stylesheet"
+	type="text/css">
+<link href="./resources/daterangepicker.min.css" rel="stylesheet"
+	type="text/css">
+
+<link href="./resources/components.css" rel="stylesheet"
+	id="style_components" type="text/css">
+<link href="./resources/plugins.min.css" rel="stylesheet"
+	type="text/css">
+
+<link href="./resources/layout.min.css" rel="stylesheet" type="text/css">
+<link href="./resources/default.min.css" rel="stylesheet"
+	type="text/css" id="style_color">
+<link href="./resources/custom.min.css" rel="stylesheet" type="text/css">
+
+<script src="js/leave.js"></script>
+<script src="js/jquery.min.js"></script>
+<script src="js/geo.js"></script>
+
+</head>
+
+
+<body
+	class="page-container-bg-solid page-header-fixed page-sidebar-closed-hide-logo"
+	onload="javascript:ruleLoad();">
+
+	<div class="page-header navbar navbar-fixed-top">
+
+		<div class="page-header-inner ">
+			<img src="img/logo.png" style="width: 1000px; margin-top: 15px" />
+		</div>
+
+	</div>
+
+	<div class="clearfix"></div>
+
+	<div class="page-container">
+
+		<div class="page-sidebar-wrapper" id="lefter">
+			<!-- lefter.html -->
+		</div>
+
+		<div class="page-content-wrapper">
+
+			<div class="page-content" style="min-height: 630px;">
+
+
+				<div class="row">
+					<div class="col-md-12">
+
+						<div class="page-head">
+							<!-- BEGIN PAGE TITLE -->
+							<div class="page-title">
+								<h1>规则管理</h1>
+							</div>
+							<!-- END PAGE TITLE -->
+						</div>
+
+
+
+
+
+
+						<div class="portlet box blue">
+							<div class="portlet-title">
+								<div class="caption">
+									<i></i> 规则管理
+								</div>
+							</div>
+							<div class="portlet-body">
+								<div class="table-responsive">
+									<div class="col-md-12">
+										<div id="listRule">
+											<table class="table table-bordered">
+												<thead>
+													<tr>
+														<th>类区</th>
+														<th>籍贯</th>
+														<th>职级</th>
+														<th>是否两地分居</th>
+														<th>请假天数</th>
+														<th>修改</th>
+														<th>删除</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>第一类区</td>
+														<td>XXX</td>
+														<td>XXX</td>
+														<td>是</td>
+														<td>50</td>
+														<td><a href="rule_up.html?id=">修改</a></td>
+														<td><a onclick="deleteRule('id')">删除</a></td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<!--  <div class="col-md-7 col-sm-7">
+                                        <div class="dataTables_paginate paging_bootstrap_full_number"
+                                             id="">
+
+                                            <ul class="pagination" style="visibility: visible;" id="findPageNum">
+                                                <li class="prev ">
+                                                    <a onclick="pageChange('first','defaultfind')" title="First" id="firstpage">
+                                                        首页
+                                                    </a>
+                                                </li>
+                                                <li class="prev">
+                                                    <a onclick="pageChange('prev','defaultfind')" title="Prev" id="prepage">
+                                                        上一页
+                                                    </a>
+                                                </li>
+                                                <li class="next pagination">
+                                                    <a onclick="pageChange('next','defaultfind')" title="Next" id="nextpage">
+                                                        下一页
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                            <ul class="pagination" style="visibility: visible;">
+                                                <li class="next pagination" id="countAll">
+                                                    <a>
+                                                        共x条数据
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div> -->
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<a class="btn blue" href="rule_add.html" style="float: right;">添加新规则</a>
+
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+	<script src="./resources/respond.min.js.下载"></script>
+	<script src="./resources/excanvas.min.js.下载"></script>
+	<script src="./resources/ie8.fix.min.js.下载"></script>
+	<script src="./resources/jquery.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/js.cookie.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/jquery.slimscroll.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/jquery.blockui.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-switch.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/daterangepicker.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/morris.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/app.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.bootstrap.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/table-datatables-managed.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap-datepicker.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/layout.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/demo.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/quick-sidebar.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/quick-nav.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/components-date-time-pickers.min.js.下载"
+		type="text/javascript"></script>
+	<script src="./resources/bootstrap.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.min.js.下载" type="text/javascript"></script>
+	<script src="./resources/datatables.bootstrap.js.下载"
+		type="text/javascript"></script>
+
+
+
+</body>
+</html>
