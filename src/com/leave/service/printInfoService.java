@@ -67,7 +67,7 @@ public class printInfoService {
 							"            <div style=\"width:800px;height:100px;\">"+
 							"			 <div style=\"float:left;width:500px;height:100px;\">" + 
 							"			 <img  src=\"images/pizhun.jpg\"  style=\"margin-left:200px;margin-bottom:18px;\"/>" +
-							"			 <img  src=\"images/erweima.ubjpg\" width=\"100\" height=\"100\" style=\"margin-left: 20px;\"/>" +
+							"			 <img  src=\"images/erweima.jpg\" width=\"100\" height=\"100\" style=\"margin-left: 20px;\"/>" +
 							"            <p style=\"display:inline;\">备注：此批复拿回单位备案<br>温馨提示:平安才是离家最近的路，销假电话"+Config.get("db.leave_phone")+"</p>"+
 							"            </div>" +
 							"            <div style=\"float:right;width:300px;height:130px;\"> " +
